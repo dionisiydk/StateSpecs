@@ -1,3 +1,3 @@
 tests
 testAsSimpleValue
-	self assert: Any asSimpleValue equals: Any
+	self assert: Any asSimpleValue equals: Any name
