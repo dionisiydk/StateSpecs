@@ -70,3 +70,11 @@ spec matches: anObject.
 spec validate: anObject. "it returnes first class result (success or particular failure)"
 ```
 Should expressions signal special SpecOfFailed exception by concrete validation failure. It makes possible to extend debugger tools to better analyse problem. Such tools can be specific for different kind of failures
+
+## Installation
+```Smalltalk
+Metacello new
+  baseline: 'Seamless';
+  repository: 'github://dionisiydk/StateSpecs';
+  load
+```
