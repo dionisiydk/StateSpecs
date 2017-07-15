@@ -1,4 +1,6 @@
 # StateSpecs
+[![Build Status](https://travis-ci.org/dionisiydk/StateSpecs.svg?branch=master)](https://travis-ci.org/dionisiydk/StateSpecs)
+
 StateSpecs is object state specification framework. It describes particular object states by first class specifications. For example there are SpecOfCollectionItem, SpecOfObjectClass and SpecOfObjectSuperclass. 
 
 To easily create specifications and validate objects by them StateSpecs provides two kind DSL: should expressions and "word" classes.
@@ -70,3 +72,11 @@ spec matches: anObject.
 spec validate: anObject. "it returnes first class result (success or particular failure)"
 ```
 Should expressions signal special SpecOfFailed exception by concrete validation failure. It makes possible to extend debugger tools to better analyse problem. Such tools can be specific for different kind of failures
+
+## Installation
+```Smalltalk
+Metacello new
+  baseline: 'StateSpecs';
+  repository: 'github://dionisiydk/StateSpecs';
+  load
+```
