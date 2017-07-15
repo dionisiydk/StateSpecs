@@ -74,7 +74,7 @@ Should expressions signal special SpecOfFailed exception by concrete validation 
 ## Installation
 ```Smalltalk
 Metacello new
-  baseline: 'Seamless';
+  baseline: 'StateSpecs';
   repository: 'github://dionisiydk/StateSpecs';
   load
 ```
