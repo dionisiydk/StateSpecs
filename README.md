@@ -1,4 +1,6 @@
 # StateSpecs
+[![Build Status](https://travis-ci.org/dionisiydk/StateSpecs.svg?branch=master)](https://travis-ci.org/dionisiydk/StateSpecs)
+
 StateSpecs is object state specification framework. It describes particular object states by first class specifications. For example there are SpecOfCollectionItem, SpecOfObjectClass and SpecOfObjectSuperclass. 
 
 To easily create specifications and validate objects by them StateSpecs provides two kind DSL: should expressions and "word" classes.
