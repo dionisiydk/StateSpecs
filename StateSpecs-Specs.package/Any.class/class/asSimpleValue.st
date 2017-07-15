@@ -1,3 +1,3 @@
 converting
 asSimpleValue
-	^self
+	^self name
