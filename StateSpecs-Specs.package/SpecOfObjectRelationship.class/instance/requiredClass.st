@@ -1,0 +1,3 @@
+accessing
+requiredClass
+	^requiredClass

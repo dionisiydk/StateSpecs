@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 17:41",
+	"super" : "SpecOfValidationResult",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"spec",
+		"subject",
+		"subjectOwner"
+	],
+	"name" : "SpecOfValidationFailure",
+	"type" : "normal"
+}

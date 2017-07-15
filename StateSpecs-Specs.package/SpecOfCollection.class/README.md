@@ -1,0 +1,1 @@
+I am root of hierarchy of collection specifications

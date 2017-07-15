@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "StateSpecs-DSL-PragmaBasedShouldExpressions-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"argument"
+	],
+	"name" : "SpecOfSyntaxTargetSample",
+	"type" : "normal"
+}

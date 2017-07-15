@@ -1,0 +1,3 @@
+debugging
+debugValidationFailingOver: aSpecFailed
+	UnhandledError signalForException: aSpecFailed

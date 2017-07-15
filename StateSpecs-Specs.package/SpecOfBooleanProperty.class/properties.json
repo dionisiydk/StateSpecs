@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 17:19",
+	"super" : "SpecOfObjectState",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"propertyMessage"
+	],
+	"name" : "SpecOfBooleanProperty",
+	"type" : "normal"
+}

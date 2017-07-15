@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "DenisKudryashov 3/3/2016 14:44",
+	"super" : "SpecOfShouldExpression",
+	"category" : "StateSpecs-DSL-PragmaBasedShouldExpressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"driver"
+	],
+	"name" : "SpecOfPragmaBasedShouldExpression",
+	"type" : "normal"
+}

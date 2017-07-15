@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 16:54",
+	"super" : "SpecOfCollection",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"requiredSize"
+	],
+	"name" : "SpecOfCollectionSize",
+	"type" : "normal"
+}

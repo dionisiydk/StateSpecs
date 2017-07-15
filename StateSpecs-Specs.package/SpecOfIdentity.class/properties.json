@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 17:06",
+	"super" : "SpecOfObjectValue",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SpecOfIdentity",
+	"type" : "normal"
+}

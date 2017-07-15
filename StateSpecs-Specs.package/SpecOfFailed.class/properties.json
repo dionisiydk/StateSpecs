@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 17:21",
+	"super" : "Error",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"reason"
+	],
+	"name" : "SpecOfFailed",
+	"type" : "normal"
+}

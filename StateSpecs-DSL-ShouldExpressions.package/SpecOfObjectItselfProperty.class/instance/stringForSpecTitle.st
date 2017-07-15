@@ -1,0 +1,3 @@
+printing
+stringForSpecTitle 
+	^value stringForSpecTitle 

@@ -1,0 +1,3 @@
+accessing
+raise
+	self subclassResponsibility

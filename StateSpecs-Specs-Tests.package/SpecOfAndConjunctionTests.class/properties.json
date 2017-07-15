@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "StateSpecs-Specs-Tests",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"actual"
+	],
+	"name" : "SpecOfAndConjunctionTests",
+	"type" : "normal"
+}

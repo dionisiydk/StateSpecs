@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DenisKudryashov 3/3/2016 14:51",
+	"super" : "Error",
+	"category" : "StateSpecs-DSL-PragmaBasedShouldExpressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SpecOfUnexpectedMessage",
+	"type" : "normal"
+}

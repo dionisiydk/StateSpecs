@@ -1,0 +1,3 @@
+printing
+itemDescription
+	^requiredItem description

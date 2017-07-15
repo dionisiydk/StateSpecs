@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "DenisKudryashov 3/3/2016 14:52",
+	"super" : "Object",
+	"category" : "StateSpecs-DSL-PragmaBasedShouldExpressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"clause",
+		"arguments"
+	],
+	"name" : "SpecOfShouldExpressionPath",
+	"type" : "normal"
+}

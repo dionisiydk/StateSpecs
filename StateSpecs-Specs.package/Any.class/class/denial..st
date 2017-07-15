@@ -1,0 +1,3 @@
+accessing
+denial: aBoolean 
+	^self

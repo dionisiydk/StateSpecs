@@ -1,0 +1,3 @@
+displaying
+clauseKeyword
+	self subclassResponsibility

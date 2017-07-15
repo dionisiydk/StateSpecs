@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 16:55",
+	"super" : "SpecOfObjectState",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"requiredFailure",
+		"shouldPassUnexpectedFailures",
+		"passingFailures"
+	],
+	"name" : "SpecOfBlockFailure",
+	"type" : "normal"
+}

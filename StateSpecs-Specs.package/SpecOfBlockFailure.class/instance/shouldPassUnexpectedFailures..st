@@ -1,0 +1,3 @@
+accessing
+shouldPassUnexpectedFailures: anObject
+	shouldPassUnexpectedFailures := anObject

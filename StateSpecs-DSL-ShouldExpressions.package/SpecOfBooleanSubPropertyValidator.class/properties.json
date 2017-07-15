@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 18:26",
+	"super" : "SpecOfBooleanPropertyValidator",
+	"category" : "StateSpecs-DSL-ShouldExpressions",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SpecOfBooleanSubPropertyValidator",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+validation
+matches: anObject 
+	^true

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "DenisKudryashov 3/2/2016 17:16",
+	"super" : "SpecOfComplexState",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SpecOfAndConjunction",
+	"type" : "normal"
+}
