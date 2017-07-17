@@ -16,7 +16,20 @@ Kind of: Number
 Instance of: String
 Equal to: 'test'
 ```
-Other examples:   
+## Installation
+```Smalltalk
+Metacello new
+  baseline: 'StateSpecs';
+  repository: 'github://dionisiydk/StateSpecs';
+  load
+```
+Use following snippet for stable dependency in your project baseline:
+```Smalltalk
+spec
+    baseline: 'StateSpecs'
+    with: [ spec repository: 'github://dionisiydk/StateSpecs:v2.4.x' ]
+```
+## Other examples:   
 ```Smalltalk
 1 should be: 2. "fail with message: Got '1' but it should be '2'"
 1 should not be: 1. "fail with message: Got '1' but it should not be '1'"
