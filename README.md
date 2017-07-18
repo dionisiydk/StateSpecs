@@ -17,17 +17,26 @@ Instance of: String
 Equal to: 'test'
 ```
 ## Installation
+Use following script for Pharo version >= 6:
 ```Smalltalk
 Metacello new
   baseline: 'StateSpecs';
   repository: 'github://dionisiydk/StateSpecs';
   load
 ```
-Use following snippet for stable dependency in your project baseline:
+To add dependency in your project baseline:
 ```Smalltalk
 spec
     baseline: 'StateSpecs'
     with: [ spec repository: 'github://dionisiydk/StateSpecs:v2.4.x' ]
+```
+For old Pharo versions project should be loaded from smalltalkhub:
+```Smalltalk
+Metacello new
+      smalltalkhubUser: 'dionisiy' project: 'StateSpecs';
+      configuration: 'StateSpecs';
+      version: #stable;
+      load.
 ```
 ## Other examples:   
 ```Smalltalk
