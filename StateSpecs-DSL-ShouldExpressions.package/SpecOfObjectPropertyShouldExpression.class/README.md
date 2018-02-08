@@ -1,6 +1,6 @@
 I implement special hook to validate internal object properties by should expressions. I am created for property validation:
 	
-	(1@0) which x should equal: 1
+	(1@0) where x should equal: 1
 
 should here returns me.
 
