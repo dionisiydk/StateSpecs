@@ -1,3 +1,3 @@
 testing
 basicMatches: aCollection 
-	^aCollection includes: requiredItem
+	^aCollection anySatisfy: [ :each | requiredItem asStateSpec matches: each]
