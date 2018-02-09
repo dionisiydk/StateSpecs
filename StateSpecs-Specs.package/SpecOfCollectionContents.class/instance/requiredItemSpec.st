@@ -1,0 +1,3 @@
+accessing
+requiredItemSpec
+	^requiredItemSpec
