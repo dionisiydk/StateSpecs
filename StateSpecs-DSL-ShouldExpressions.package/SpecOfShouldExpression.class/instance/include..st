@@ -1,3 +1,3 @@
 expressions
-include: anObject 
-	^self verify: (SpecOfCollectionContents requiredItem: anObject)
+include: aSpec
+	^ self verify: (SpecOfCollectionContents requiredItemSpec: aSpec).

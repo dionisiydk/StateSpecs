@@ -1,3 +1,3 @@
 specs creation
 item: anObject 
-	^SpecOfCollectionContents requiredItem: anObject
+	^SpecOfCollectionContents requiredItemSpec: anObject

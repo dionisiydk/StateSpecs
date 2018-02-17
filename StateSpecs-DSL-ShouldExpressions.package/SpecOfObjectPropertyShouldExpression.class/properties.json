@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "DenisKudryashov 3/2/2016 18:07",
+	"commentStamp" : "chaetal 2/8/2018 11:35",
 	"super" : "SpecOfShouldExpression",
 	"category" : "StateSpecs-DSL-ShouldExpressions",
 	"classinstvars" : [ ],
