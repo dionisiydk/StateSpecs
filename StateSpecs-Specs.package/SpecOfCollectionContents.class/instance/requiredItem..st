@@ -1,3 +1,3 @@
 accessing
 requiredItem: anObject
-	requiredItem := anObject
+	requiredItem := anObject asStateSpec

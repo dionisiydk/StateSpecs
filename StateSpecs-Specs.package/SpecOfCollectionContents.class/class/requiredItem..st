@@ -1,3 +1,3 @@
 instance creation
-requiredItem: anObject 
-	^self new requiredItem: anObject
+requiredItem: anObjectOrSpec 
+	^self new requiredItem: anObjectOrSpec
