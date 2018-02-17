@@ -1,3 +1,3 @@
 expressions
 include: anObjectOrSpec
-	^ self verify: (SpecOfCollectionContents requiredItemSpec: anObjectOrSpec asStateSpec)
+	^ self verify: (SpecOfCollectionContents requiredItem: anObjectOrSpec)

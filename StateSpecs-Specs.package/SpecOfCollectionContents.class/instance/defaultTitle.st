@@ -1,3 +1,3 @@
 displaying
 defaultTitle
-	^'include ' , requiredItemSpec stringForSpecTitle
+	^'include ' , requiredItem printSimpleValue

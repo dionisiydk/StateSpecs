@@ -1,3 +1,3 @@
 accessing
 defaultTitle
-	^'include ', requiredItem stringForSpecTitle, ' at ' , containingKey stringForSpecTitle
+	^'include ', requiredItem printSimpleValue, ' at ' , containingKey stringForSpecTitle
