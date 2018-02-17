@@ -11,11 +11,12 @@ baseline: spec
 				spec requires: #('StateSpecs-DSL-ShouldExpressions' 'StateSpecs-DSL-ClassWords')];
 			
 			package: 'StateSpecs-Specs-Tests' with: [ spec requires: 'StateSpecs-Specs' ];
+			package: 'StateSpecs-GTTools' with: [ spec requires: 'StateSpecs-Specs' ];
 			package: 'StateSpecs-DSL-ShouldExpressions-Tests' with: [ spec requires: 'StateSpecs-DSL-ShouldExpressions' ];
 			package: 'StateSpecs-DSL-ClassWords-Tests' with: [ spec requires: 'StateSpecs-DSL-ClassWords' ].
 		
 		spec
 			group: 'default' with: #('Core' 'Tests');
 			group: 'Core' with: #('StateSpecs-Specs' 'StateSpecs-DSL-ShouldExpressions' 'StateSpecs-DSL-ClassWords');
-			group: 'Tests' with: #('StateSpecs-Specs-Tests' 'StateSpecs-DSL-ShouldExpressions-Tests' 'StateSpecs-DSL-ClassWords-Tests' 'StateSpecs-Help').
+			group: 'Tests' with: #('StateSpecs-Specs-Tests' 'StateSpecs-DSL-ShouldExpressions-Tests' 'StateSpecs-DSL-ClassWords-Tests' 'StateSpecs-Help' 'StateSpecs-GTTools').
 	]
