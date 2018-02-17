@@ -1,3 +1,3 @@
 specs creation
-item: anObject 
-	^SpecOfCollectionContents requiredItemSpec: anObject
+item: anObjectOrSpec 
+	^SpecOfCollectionContents requiredItemSpec: anObjectOrSpec asStateSpec

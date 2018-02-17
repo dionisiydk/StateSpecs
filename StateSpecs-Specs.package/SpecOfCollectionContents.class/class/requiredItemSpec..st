@@ -1,3 +1,3 @@
 instance creation
-requiredItemSpec: anObject 
-	^self new requiredItemSpec: anObject asStateSpec
+requiredItemSpec: aStateSpec 
+	^self new requiredItemSpec: aStateSpec
