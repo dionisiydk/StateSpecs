@@ -60,9 +60,12 @@ Metacello new
 
 #(1 2) should haveSize: 10.
 #(1 2) should include: 10.
+#(1 2) should include: (Kind of: String).
+#(1 2) should include: [:number | number > 10]. 
 #(1 2) should include: 10 at: 1.
 #(1 2) should include: (Instance of: String) at: 1.
 #(1 2) should include: (Kind of: String) at: 2.
+#(1 2) should include: [:number | number > 10] at: 2.
 
 [1 + 2] should raise: ZeroDivide.
 [1/0] should not raise: ZeroDivide.
