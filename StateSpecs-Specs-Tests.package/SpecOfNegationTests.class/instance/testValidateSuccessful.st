@@ -1,7 +1,7 @@
 tests
 testValidateSuccessful
 	| spec1 spec2 stateSpec result |
-	spec1 := SpecOfEquality to: 2.
+	spec1 := SpecOfEquality requiredValue: 2.
 	spec2 := SpecOfObjectSuperclass requiredClass: String.
 	
 	stateSpec := SpecOfNegation of: spec1 and: spec2.
