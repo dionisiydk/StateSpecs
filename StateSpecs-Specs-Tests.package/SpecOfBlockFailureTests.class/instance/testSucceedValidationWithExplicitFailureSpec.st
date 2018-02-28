@@ -3,7 +3,7 @@ testSucceedValidationWithExplicitFailureSpec
 	| spec result expectedError |
 	expectedError := Error new messageText: 'test error'.
 	
-	spec := SpecOfBlockFailure requiredFailure: (SpecOfIdentity to: expectedError).	
+	spec := SpecOfBlockFailure requiredFailure: (SpecOfIdentity requiredValue: expectedError).	
 	
 	result := spec validate: [ expectedError signal].
 	

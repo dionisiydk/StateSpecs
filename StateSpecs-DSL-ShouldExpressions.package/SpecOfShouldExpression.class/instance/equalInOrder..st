@@ -1,3 +1,3 @@
 expressions
 equalInOrder: anObject 
-	^self verify: (SpecOfCollectionOrderedEquality to: anObject)
+	^self verify: (SpecOfCollectionOrderedEquality requiredValue: anObject)

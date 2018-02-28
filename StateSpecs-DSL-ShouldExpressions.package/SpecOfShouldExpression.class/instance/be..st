@@ -1,3 +1,3 @@
 expressions
 be: anObject 
-	^self verify: (SpecOfIdentity to: anObject)
+	^self verify: (SpecOfIdentity requiredValue: anObject)
