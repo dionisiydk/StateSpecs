@@ -1,3 +1,3 @@
 expressions
 equal: anObject 
-	^self verify: (SpecOfEquality to: anObject)
+	^self verify: (SpecOfEquality requiredValue: anObject)
