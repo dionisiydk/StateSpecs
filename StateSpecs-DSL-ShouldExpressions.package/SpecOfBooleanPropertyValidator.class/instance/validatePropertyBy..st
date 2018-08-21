@@ -1,4 +1,4 @@
 validation
 validatePropertyBy: aSpecOfBooleanProperty
 
-	(aSpecOfBooleanProperty validate: subject) raise
+	^ (aSpecOfBooleanProperty validate: subject) raise
