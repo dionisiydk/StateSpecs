@@ -5,4 +5,4 @@ doesNotUnderstand: aMessage
 	spec := SpecOfBooleanProperty fromMessage: aMessage.
 	spec denial: withNegation.
 
-	self validatePropertyBy: spec
+	^ self validatePropertyBy: spec
