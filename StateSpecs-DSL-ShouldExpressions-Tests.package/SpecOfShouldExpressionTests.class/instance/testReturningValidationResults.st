@@ -12,8 +12,8 @@ testReturningValidationResults
 	] on: SpecOfFailed do: #resume.
 
 	results size should be: 5.
-	(results at: 1) should be isSuccess.
-	(results at: 2) should be isFailure.
-	(results at: 3) should be isSuccess.
-	(results at: 4) should be isSuccess.
-	(results at: 5) should be isSuccess
+	self assert: (results at: 1) isSuccess.
+	self assert: (results at: 2) isFailure.
+	self assert: (results at: 3) isSuccess.
+	self assert: (results at: 4) isSuccess.
+	self assert: (results at: 5) isSuccess

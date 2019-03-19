@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "DenisKudriashov 3/19/2019 22:06",
+	"super" : "SpecOfValidationSuccess",
+	"category" : "StateSpecs-Specs",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"signaledFailure"
+	],
+	"name" : "SpecOfFailureValidationSuccess",
+	"type" : "normal"
+}

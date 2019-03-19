@@ -1,0 +1,3 @@
+asserting
+should
+	^signaledFailure should

@@ -13,7 +13,7 @@ validate: aBlock
 				result := requiredFailure validate: ex.
 			
 				result isSuccess 
-					ifTrue: [ result ] 
+					ifTrue: [ SpecOfFailureValidationSuccess with: ex ] 
 					ifFalse: [ 
 						shouldPassUnexpectedFailures
 							ifTrue: [ ex pass ]

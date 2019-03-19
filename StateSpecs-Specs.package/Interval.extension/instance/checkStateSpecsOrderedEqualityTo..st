@@ -1,4 +1,4 @@
 *StateSpecs-Specs
 checkStateSpecsOrderedEqualityTo: anotherCollection
 
-	^self checkStateSpecsOrderedEqualityTo: anotherCollection
+	^self checkStateSpecsEqualityTo: anotherCollection
