@@ -1,0 +1,3 @@
+asserting
+where
+	^signaledFailure where

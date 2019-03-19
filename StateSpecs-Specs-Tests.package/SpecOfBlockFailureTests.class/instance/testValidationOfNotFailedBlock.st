@@ -6,4 +6,4 @@ testValidationOfNotFailedBlock
 	result := spec validate: [ 'blockBody' ].
 	
 	self assert: result isFailure.
-	self assert: result description equals: 'Got no failures but should be an instance of ZeroDivide'
+	self assert: result description equals: 'Got no failures but should be a kind of ZeroDivide'
