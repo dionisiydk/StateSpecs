@@ -79,10 +79,13 @@ Metacello new
 [1 + 2] should raise: ZeroDivide.
 [1/0] should not raise: ZeroDivide.
 [1/0] should raise: Error.
-[1/0] should raise: (Kind of: Error).
+[1/0] should raise: (Instance of: Error).
 [1/0] should fail.
 [self error: 'test'] should raise: errorInstance. "fail because raised error is not the same as expected errorInstance"
 [1 + 2] should not fail.
+error := [ self error: 'some error' ] should fail.
+error should beInstanceOf: Error.
+error where description should includeSubstring: 'some'
 
 3 should be even.
 2 should not be even.
