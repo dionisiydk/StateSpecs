@@ -5,4 +5,4 @@ os:
 smalltalk:
   - Pharo-6.0
   - Pharo-7.0
-  - Pharo-8.0
+  - Pharo32-8.0
