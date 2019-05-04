@@ -1,4 +1,4 @@
 printing
 printOn: aStream
 
-	aStream << '"' << value << '" from ' << self stringForSpecTitle
+	aStream << '"' << value asString << '" from ' << self stringForSpecTitle
