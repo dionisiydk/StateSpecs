@@ -1,3 +1,0 @@
-accessing
-targetPragma
-	^targetPragmas first

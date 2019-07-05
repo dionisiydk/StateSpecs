@@ -1,3 +1,0 @@
-*StateSpecs-Specs
-isStateSpec
-	^false

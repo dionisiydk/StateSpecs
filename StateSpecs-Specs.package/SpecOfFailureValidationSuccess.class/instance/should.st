@@ -1,3 +1,0 @@
-asserting
-should
-	^signaledFailure should

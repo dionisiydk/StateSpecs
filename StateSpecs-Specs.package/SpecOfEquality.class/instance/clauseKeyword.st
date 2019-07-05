@@ -1,3 +1,0 @@
-displaying
-clauseKeyword
-	^'equal'

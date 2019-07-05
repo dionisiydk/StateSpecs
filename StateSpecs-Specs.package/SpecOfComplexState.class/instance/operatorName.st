@@ -1,3 +1,0 @@
-printing
-operatorName
-	self subclassResponsibility 

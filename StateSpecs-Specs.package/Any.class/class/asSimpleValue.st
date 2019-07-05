@@ -1,3 +1,0 @@
-converting
-asSimpleValue
-	^self name

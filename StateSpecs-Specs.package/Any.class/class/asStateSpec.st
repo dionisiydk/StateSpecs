@@ -1,3 +1,0 @@
-converting
-asStateSpec
-	^self

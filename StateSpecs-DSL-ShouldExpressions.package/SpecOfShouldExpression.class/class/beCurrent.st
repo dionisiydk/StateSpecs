@@ -1,3 +1,0 @@
-accessing
-beCurrent
-	^CurrentExpressionsClass := self
