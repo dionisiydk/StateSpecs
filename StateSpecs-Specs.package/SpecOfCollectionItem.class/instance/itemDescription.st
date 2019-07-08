@@ -1,3 +1,0 @@
-printing
-itemDescription
-	^requiredItem description

@@ -1,3 +1,0 @@
-asserting
-where
-	^signaledFailure where

@@ -1,3 +1,0 @@
-accessing
-errorValidationResult
-	^ errorValidationResult

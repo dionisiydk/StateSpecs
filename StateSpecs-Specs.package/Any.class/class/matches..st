@@ -1,3 +1,0 @@
-validation
-matches: anObject 
-	^true
