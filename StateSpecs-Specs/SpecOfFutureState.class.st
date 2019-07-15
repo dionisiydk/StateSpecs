@@ -3,55 +3,54 @@ Class {
 	#superclass : #SpecOfObjectState,
 	#instVars : [
 		'requiredState',
-		'maxTime'
+		'maxWaitingTime'
 	],
 	#category : #'StateSpecs-Specs'
 }
 
 { #category : #'instance creation' }
-SpecOfFutureState class >> requiredFailure: anExceptionClass [ 
-	^self new requiredFailure: anExceptionClass
+SpecOfFutureState class >> requiredState: anObjectOrSpec [ 
+	^self new requiredState: anObjectOrSpec
 ]
 
 { #category : #testing }
-SpecOfFutureState >> basicMatches: aBlockContext [ 
-	^
-	[aBlockContext value.
-	false] on: Exception
-			do: 
-				[:ex | 
-				(self shouldAlwaysPassFailure: ex) ifTrue: [ex pass].
-				(requiredFailure matches: ex) ifTrue: [true] ifFalse: [
-					shouldPassUnexpectedFailures ifTrue: [ ex pass] ifFalse: [false] ]]
+SpecOfFutureState >> basicMatches: aBlock [
+
+	| startTime |
+	startTime := DateAndTime now.
+	[(requiredState matches: aBlock value) ifTrue: [^true].
+	DateAndTime now < (startTime + maxWaitingTime)] whileTrue: [
+		100 milliSeconds wait].
+	
+	^requiredState matches: aBlock value
 ]
 
 { #category : #displaying }
 SpecOfFutureState >> defaultTitle [
-	^requiredFailure title
+	^'take a while to ', requiredState title
 ]
 
 { #category : #initialization }
 SpecOfFutureState >> initialize [
 	super initialize.
 	
-	shouldPassUnexpectedFailures := false.
-	passingFailures := {SpecOfFailed. Halt. MessageNotUnderstood. Deprecation} asOrderedCollection
+	maxWaitingTime := 200 milliSeconds
 ]
 
 { #category : #accessing }
 SpecOfFutureState >> invertChildren [
 	super invertChildren.
-	requiredFailure invert
+	requiredState invert
 ]
 
 { #category : #accessing }
-SpecOfFutureState >> maxTime [
-	^ maxTime
+SpecOfFutureState >> maxWaitingTime [
+	^ maxWaitingTime
 ]
 
 { #category : #accessing }
-SpecOfFutureState >> maxTime: anObject [
-	maxTime := anObject
+SpecOfFutureState >> maxWaitingTime: anObject [
+	maxWaitingTime := anObject
 ]
 
 { #category : #accessing }
@@ -61,36 +60,18 @@ SpecOfFutureState >> requiredState [
 
 { #category : #accessing }
 SpecOfFutureState >> requiredState: anObject [
-	requiredState := anObject
+	requiredState := anObject asStateSpec
 ]
 
-{ #category : #accessing }
-SpecOfFutureState >> specForFailure: exceptionClassOrSpec [
-
-	^exceptionClassOrSpec isClass & (exceptionClassOrSpec ~= Any)
-		ifTrue: [ SpecOfObjectSuperclass requiredClass: exceptionClassOrSpec ]
-		ifFalse: [ exceptionClassOrSpec asStateSpec ]
-]
-
-{ #category : #validation }
+{ #category : #testing }
 SpecOfFutureState >> validate: aBlock [
 
-	| result |
-	^[aBlock value.
-	(requiredFailure matches: Any) 
-		ifTrue: [ SpecOfValidationResult success ]
-		ifFalse: [ SpecOfBlockValidationFailure noErrorIn: aBlock butShouldBe: self]]
-			on: Exception do: [:ex | 
-				(self shouldAlwaysPassFailure: ex) ifTrue: [ex pass]. "we want to pass by default DNU, Halt and internal SpecOfFailed failures"
-			
-				requiredFailure denial: denial. 
-				result := requiredFailure validate: ex.
-			
-				result isSuccess 
-					ifTrue: [ SpecOfFailureValidationSuccess with: ex ] 
-					ifFalse: [ 
-						shouldPassUnexpectedFailures
-							ifTrue: [ ex pass ]
-							ifFalse: [ SpecOfBlockValidationFailure unexpectedError: result in: aBlock butShouldBe: self]]
-		]
+	| startTime validationResult |
+	startTime := DateAndTime now.
+	[validationResult := requiredState validate: aBlock value.
+	validationResult isSuccess ifTrue: [^validationResult].
+	DateAndTime now < (startTime + maxWaitingTime)] whileTrue: [
+		100 milliSeconds wait].
+	
+	^requiredState validate: aBlock value
 ]
