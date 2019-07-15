@@ -31,6 +31,18 @@ SpecOfFutureStateTests >> testDescriptionWhenRequiredStateIsSpec [
 ]
 
 { #category : #tests }
+SpecOfFutureStateTests >> testFailedValidationWhenGivenValueBecomesMatchingTooLater [
+	| spec value result process |
+	spec := SpecOfFutureState requiredState: #expectedValue waitWithin: 10 milliSeconds.
+	value := #wrongValue.
+	process := [ result := spec validate: [value] ] fork.
+	50 milliSeconds wait.
+	value := #expectedValue.
+	[ Processor yield. process isTerminated. ] whileFalse.
+	self deny: result isSuccess
+]
+
+{ #category : #tests }
 SpecOfFutureStateTests >> testFailedValidationWhenGivenValueNeverMatches [
 
 	| spec result |
