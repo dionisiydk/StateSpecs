@@ -15,14 +15,6 @@ SpecOfFutureStateTests >> testCreationWithExpectedValue [
 ]
 
 { #category : #tests }
-SpecOfFutureStateTests >> testDescriptionWhenItIsNegated [
-	| spec |
-	spec := (SpecOfFutureState requiredState: #expectedValue) not.
-	
-	self assert: spec description equals: 'should take a while to not equal "#expectedValue"'
-]
-
-{ #category : #tests }
 SpecOfFutureStateTests >> testDescriptionWhenRequiredStateIsSimpleValue [
 	| spec |
 	spec := SpecOfFutureState requiredState: #expectedValue.
@@ -36,6 +28,14 @@ SpecOfFutureStateTests >> testDescriptionWhenRequiredStateIsSpec [
 	spec := SpecOfFutureState requiredState: (Kind of: Integer).
 	
 	self assert: spec description equals: 'should take a while to be a kind of Integer'
+]
+
+{ #category : #tests }
+SpecOfFutureStateTests >> testDescriptionWhenSpecWithDenial [
+	| spec |
+	spec := (SpecOfFutureState requiredState: #expectedValue) not.
+	
+	self assert: spec description equals: 'should take a while to not equal "#expectedValue"'
 ]
 
 { #category : #tests }
@@ -59,6 +59,17 @@ SpecOfFutureStateTests >> testFailedValidationWhenGivenValueNeverMatches [
 	result := spec validate: [#wrongValue].
 	self deny: result isSuccess.
 	self assert: result description equals: 'Got "#wrongValue" but it should equal "#expectedValue"'
+]
+
+{ #category : #tests }
+SpecOfFutureStateTests >> testFailedValidationWhenSpecWithDenial [
+
+	| spec result |
+	spec := (SpecOfFutureState requiredState: #expectedValue) not.
+	
+	result := spec validate: [#expectedValue].
+	self deny: result isSuccess.
+	self assert: result description equals: 'Got "#expectedValue" but it should not equal "#expectedValue"'
 ]
 
 { #category : #tests }
@@ -121,5 +132,15 @@ SpecOfFutureStateTests >> testSucceedValidationWhenGivenValueBecomesMatchingAfte
 	(spec maxWaitingTime / 2) wait.
 	value := #expectedValue.
 	[ Processor yield. process isTerminated. ] whileFalse.
+	self assert: result isSuccess
+]
+
+{ #category : #tests }
+SpecOfFutureStateTests >> testSucceedValidationWhenSpecWithDenial [
+
+	| spec result |
+	spec := (SpecOfFutureState requiredState: #expectedValue) not.
+	
+	result := spec validate: [#wrongState].
 	self assert: result isSuccess
 ]

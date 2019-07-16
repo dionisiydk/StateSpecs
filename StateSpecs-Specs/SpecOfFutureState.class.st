@@ -66,7 +66,9 @@ SpecOfFutureState >> basicMatches: aBlock [
 
 { #category : #displaying }
 SpecOfFutureState >> defaultTitle [
-	^'take a while to ', requiredState title
+	| denialString |
+	denialString := requiredState denial ifTrue: [ 'not ' ] ifFalse: [ '' ].
+	^'take a while to ', denialString,  requiredState title
 ]
 
 { #category : #initialization }
