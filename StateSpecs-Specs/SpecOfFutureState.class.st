@@ -1,29 +1,30 @@
 "
 I specify the possible future object state (#requiredState) which could happen within specified duration (#maxWaitingTime). 
 
-To create my instance use one of following examples:
+To create my instances use following examples:
 	
 	SpecOfFutureState requiredState: #expectedValue.
 	SpecOfFutureState requiredState: (Instance of: Integer).
 	SpecOfFutureState requiredState: #expectedValue waitWithin: 1 second.
-	
-By default #maxWaitingTime is just 100 milliseconds.
 
-During validation I simply wait in loop specified condition. When my time is expired I return actual validation result of #requiredState spec.
+During validation I simply wait in loop specified condition. When I got it or when my time is expired I return actual validation result of #requiredState spec.
 
-My main purpose is to simplify testing of multi process logic where tested objects fork processes which asyncronously modify some state. 
-In such cases it could be easy to just wait the state in the loop instead of organizing synchronization in the test with semaphores which is not always possible. 
-For example test could start the server which initializes some state in separate process. So it becomes started after a while. Following ""should expression"" allows to test it in a simple way: 
+My main purpose is to simplify testing of multi-threaded logic when multiple processes are spawned during the test and asyncronously modify particular object state. 
+For example test could start the server which initializes some state in separate process. So it becomes started only after a while. 
+In this case test needs to wait some time before asserting the server state. To improve the speed of test you would also run a waiting loop to minimize the time when test will notice the required state.
+I implement this approach in reusable way. And on top of that the special extension to ""should expressions"" is implemented. Example with server will look like:
 
 	[ server isStarted ] should takeAWhile to be: true.
 
-Or with #be construction it would be even more fluent:
+Or with #be construction it will be even more fluent:
 
 	server should takeAWhile to be isStarted.
 
-Notice #takeAWhile keyword. It converts following general state spec to my instance which waits a while to allow subject to match the spec.
+Notice ""takeAWhile to"" keywords. It converts general state spec to my instance which waits a while to allow subject to match the spec.
 
-For concrete waiting timeout use following expression: 
+By default I use 100 milliseconds as #maxWaitingTime. Usually it is enough to allow background processes take control and perform required operations.
+ 
+But you can specify concrete timeout using following expression: 
 
 	(server should take: 20 seconds) to be isStarted.	
 
@@ -33,8 +34,6 @@ Internal Representation and Key Implementation Points.
 	maxWaitingTime:		<Duration>
 	requiredState:		<SpecOfObjectState>
 
-
-    Implementation Points
 "
 Class {
 	#name : #SpecOfFutureState,
@@ -75,6 +74,14 @@ SpecOfFutureState >> initialize [
 	super initialize.
 	
 	maxWaitingTime := 200 milliSeconds
+]
+
+{ #category : #accessing }
+SpecOfFutureState >> invert [
+	"My own #denial state is reduntant as my actual logic is provided by #requiredState.
+	So this override is to avoid modifying my #denial state 
+	while invertingChildren will invert #requiredState"
+	self invertChildren.
 ]
 
 { #category : #accessing }

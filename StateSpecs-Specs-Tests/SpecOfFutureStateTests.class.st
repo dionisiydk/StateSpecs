@@ -15,6 +15,14 @@ SpecOfFutureStateTests >> testCreationWithExpectedValue [
 ]
 
 { #category : #tests }
+SpecOfFutureStateTests >> testDescriptionWhenItIsNegated [
+	| spec |
+	spec := (SpecOfFutureState requiredState: #expectedValue) not.
+	
+	self assert: spec description equals: 'should take a while to not equal "#expectedValue"'
+]
+
+{ #category : #tests }
 SpecOfFutureStateTests >> testDescriptionWhenRequiredStateIsSimpleValue [
 	| spec |
 	spec := SpecOfFutureState requiredState: #expectedValue.
