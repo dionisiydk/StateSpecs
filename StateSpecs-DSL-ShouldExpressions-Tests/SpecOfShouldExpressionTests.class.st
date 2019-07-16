@@ -420,3 +420,15 @@ SpecOfShouldExpressionTests >> testStringMatchesWithRegexCaseSensitive [
 	self should: ['test string' should matchRegex: '^Test' caseSensitive: true] raise: SpecOfFailed.
 	self should: ['some test string' should matchRegex: '^test' caseSensitive: true] raise: SpecOfFailed
 ]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhile [
+	| value |
+	[ value := #expectedValue ] fork.	
+	self shouldnt: [value should takeAWhile to be: #expectedValue] raise: SpecOfFailed.
+	self should: [value should takeAWhile to be: #newValue] raise: SpecOfFailed.
+	
+	self should: [value should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
+	[ value := #newValue ] fork.
+	self should: [value should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
+]
