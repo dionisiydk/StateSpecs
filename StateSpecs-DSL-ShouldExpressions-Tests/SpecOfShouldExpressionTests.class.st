@@ -425,10 +425,10 @@ SpecOfShouldExpressionTests >> testStringMatchesWithRegexCaseSensitive [
 SpecOfShouldExpressionTests >> testTakeAWhile [
 	| value |
 	[ value := #expectedValue ] fork.	
-	self shouldnt: [value should takeAWhile to be: #expectedValue] raise: SpecOfFailed.
-	self should: [value should takeAWhile to be: #newValue] raise: SpecOfFailed.
+	self shouldnt: [[value] should takeAWhile to be: #expectedValue] raise: SpecOfFailed.
+	self should: [[value] should takeAWhile to be: #newValue] raise: SpecOfFailed.
 	
-	self should: [value should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
+	self should: [[value] should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
 	[ value := #newValue ] fork.
-	self should: [value should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
+	self shouldnt: [[value] should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
 ]

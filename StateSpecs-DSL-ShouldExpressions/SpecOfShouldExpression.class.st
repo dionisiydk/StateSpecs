@@ -45,9 +45,14 @@ SpecOfShouldExpression class >> currentExpressionsClass [
 ]
 
 { #category : #'instance creation' }
-SpecOfShouldExpression class >> startingAt: anObject [
-	^self currentExpressionsClass new 
+SpecOfShouldExpression class >> for: anObject [
+	^self new 
 		receiver: anObject
+]
+
+{ #category : #'instance creation' }
+SpecOfShouldExpression class >> startingAt: anObject [
+	^self currentExpressionsClass for: anObject
 ]
 
 { #category : #expressions }
@@ -242,6 +247,11 @@ SpecOfShouldExpression >> respondTo: aSelector [
 { #category : #expressions }
 SpecOfShouldExpression >> satisfy: aBlock [
 	^self verify: (SpecOfObjectStateByPredicate from: aBlock)
+]
+
+{ #category : #expressions }
+SpecOfShouldExpression >> takeAWhile [
+	^SpecOfFutureShouldExpression for: receiver
 ]
 
 { #category : #verification }
