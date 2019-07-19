@@ -51,6 +51,12 @@ SpecOfShouldExpression class >> for: anObject [
 ]
 
 { #category : #'instance creation' }
+SpecOfShouldExpression class >> for: anObject withNegation: aBoolean [
+	^(self for: anObject)
+		withNegation: aBoolean
+]
+
+{ #category : #'instance creation' }
 SpecOfShouldExpression class >> startingAt: anObject [
 	^self currentExpressionsClass for: anObject
 ]
@@ -251,7 +257,24 @@ SpecOfShouldExpression >> satisfy: aBlock [
 
 { #category : #expressions }
 SpecOfShouldExpression >> takeAWhile [
+	withNegation ifTrue: [
+		"The expression 'should not takeAWhile' logically means 
+		that following condition should be already true without any waiting. 
+		And it makes it equivalent to simple should expression"
+		 ^self class for: receiver value ].
+	
 	^SpecOfFutureShouldExpression for: receiver
+]
+
+{ #category : #expressions }
+SpecOfShouldExpression >> to [ 
+	"Helper message for readability of 'should not takeAWhile' expressions:
+		some not should takeAWhile to be: 10
+		(some not should take: 10 seconds) to be: 10
+	In that case 'should not takeAWhile' returns simple should expression 
+	and it needs to understand #to"
+		
+	^self
 ]
 
 { #category : #verification }

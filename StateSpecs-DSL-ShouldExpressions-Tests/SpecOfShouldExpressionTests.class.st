@@ -432,3 +432,30 @@ SpecOfShouldExpressionTests >> testTakeAWhile [
 	[ value := #newValue ] fork.
 	self shouldnt: [[value] should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
 ]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithBePredicateProperty [
+	| value |
+	value := #() asOrderedCollection.
+	self shouldnt: [[value] should takeAWhile to be isEmpty] raise: SpecOfFailed.
+	self should: [[value] should takeAWhile to not be isEmpty] raise: SpecOfFailed.
+	
+	[ value add: #someItem ] fork.
+	self shouldnt: [[value] should takeAWhile to not be isEmpty] raise: SpecOfFailed.
+]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithPriorNegation [
+	"The expression 'should not takeAWhile' logically means 
+	that following condition should be already true without any waiting. 
+	And it makes it equivalent to simple should expression"
+	| value |
+	value := #expectedValue.
+	self shouldnt: [[value] should not takeAWhile to be: #expectedValue] raise: SpecOfFailed.
+	self should: [[value] should not takeAWhile to be: #anotherValue] raise: SpecOfFailed.
+	
+	[value := #anotherValue] fork.
+	self should: [[value] should not takeAWhile to be: #anotherValue] raise: SpecOfFailed.
+	
+	
+]

@@ -16,5 +16,5 @@ SpecOfFutureShouldExpression >> to [
 { #category : #verification }
 SpecOfFutureShouldExpression >> verify: aSpecOfObjectState [
 
-	super verify: (SpecOfFutureState requiredState: aSpecOfObjectState)
+	^super verify: ( SpecOfFutureState requiredState: aSpecOfObjectState) 
 ]
