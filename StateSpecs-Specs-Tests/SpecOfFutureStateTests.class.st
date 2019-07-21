@@ -19,7 +19,7 @@ SpecOfFutureStateTests >> testDescriptionWhenRequiredStateIsSimpleValue [
 	| spec |
 	spec := SpecOfFutureState requiredState: #expectedValue.
 	
-	self assert: spec description equals: 'should take a while to equal "#expectedValue"'
+	self assert: spec description equals: 'should take a while to equal #expectedValue'
 ]
 
 { #category : #tests }
@@ -35,7 +35,7 @@ SpecOfFutureStateTests >> testDescriptionWhenSpecWithDenial [
 	| spec |
 	spec := (SpecOfFutureState requiredState: #expectedValue) not.
 	
-	self assert: spec description equals: 'should take a while to not equal "#expectedValue"'
+	self assert: spec description equals: 'should take a while to not equal #expectedValue'
 ]
 
 { #category : #tests }
@@ -58,7 +58,7 @@ SpecOfFutureStateTests >> testFailedValidationWhenGivenValueNeverMatches [
 	
 	result := spec validate: [#wrongValue].
 	self deny: result isSuccess.
-	self assert: result description equals: 'Got "#wrongValue" but it should equal "#expectedValue"'
+	self assert: result description equals: 'Got #wrongValue but it should equal #expectedValue'
 ]
 
 { #category : #tests }
@@ -69,7 +69,7 @@ SpecOfFutureStateTests >> testFailedValidationWhenSpecWithDenial [
 	
 	result := spec validate: [#expectedValue].
 	self deny: result isSuccess.
-	self assert: result description equals: 'Got "#expectedValue" but it should not equal "#expectedValue"'
+	self assert: result description equals: 'Got #expectedValue but it should not equal #expectedValue'
 ]
 
 { #category : #tests }

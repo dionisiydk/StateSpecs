@@ -29,7 +29,7 @@ SpecOfShouldExpressionPropertyReceiverTests >> testPrinting [
 	| property |
 	property := (SpecOfShouldExpressionObjectReceiver from: #object) subPropertyAt: (Message selector: #size).
 
-	self assert: property printString equals: '"6" from #object size'
+	self assert: property printString equals: '6 from #object size'
 ]
 
 { #category : #tests }
@@ -39,5 +39,5 @@ SpecOfShouldExpressionPropertyReceiverTests >> testPrintingDeepProperty [
 	property := (SpecOfShouldExpressionObjectReceiver from: #object) subPropertyAt: (Message selector: #size).
 	subProperty := property subPropertyAt: (Message selector: #negated).
 	
-	self assert: subProperty printString equals: '"-6" from #object size negated'
+	self assert: subProperty printString equals: '-6 from #object size negated'
 ]
