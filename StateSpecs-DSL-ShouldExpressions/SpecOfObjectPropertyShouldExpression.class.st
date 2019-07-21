@@ -18,11 +18,6 @@ Class {
 	#category : 'StateSpecs-DSL-ShouldExpressions'
 }
 
-{ #category : #expressions }
-SpecOfObjectPropertyShouldExpression >> be [
-	^SpecOfBooleanSubPropertyValidator for: receiver withNegation: withNegation
-]
-
 { #category : #verification }
 SpecOfObjectPropertyShouldExpression >> verify: aSpecOfObjectState [
 

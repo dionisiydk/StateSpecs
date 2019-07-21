@@ -63,7 +63,7 @@ SpecOfShouldExpression class >> startingAt: anObject [
 
 { #category : #expressions }
 SpecOfShouldExpression >> be [
-	^SpecOfBooleanPropertyValidator for: receiver withNegation: withNegation
+	^SpecOfBooleanPropertyValidator for: self
 ]
 
 { #category : #expressions }
