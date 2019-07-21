@@ -52,9 +52,9 @@ SpecOfValidationFailure >> debugSpecOver: aSpecFailed [
 { #category : #printing }
 SpecOfValidationFailure >> description [
 	subjectOwner ifNil: [ 
-		^'Got "', subject stringForSpecValidation , '" but it ' , spec description].
+		^'Got ', subject stringForSpecValidation , ' but it ' , spec description].
 	
-	^'Got "', subject stringForSpecValidation , '" from ', subjectOwner stringForSpecValidation, ' but it ' , spec description.
+	^'Got ', (subjectOwner printSubject: subject), ' but it ' , spec description.
 ]
 
 { #category : #testing }

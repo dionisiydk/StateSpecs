@@ -18,37 +18,36 @@ Internal Representation and Key Implementation Points.
 
 "
 Class {
-	#name : #SpecOfObjectItselfProperty,
-	#superclass : #Object,
+	#name : #SpecOfShouldExpressionObjectReceiver,
+	#superclass : #SpecOfShouldExpressionRootReceiver,
 	#instVars : [
 		'value'
 	],
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #'instance creation' }
-SpecOfObjectItselfProperty class >> of: anObject [
+SpecOfShouldExpressionObjectReceiver class >> from: anObject [
 	^self new 
 		value: anObject
 ]
 
 { #category : #printing }
-SpecOfObjectItselfProperty >> stringForSpecTitle [ 
+SpecOfShouldExpressionObjectReceiver >> stringForSpecTitle [ 
 	^value stringForSpecTitle 
 ]
 
 { #category : #accessing }
-SpecOfObjectItselfProperty >> subPropertyAt: aMessage [
-
-	^SpecOfObjectProperty of: self message: aMessage
-]
-
-{ #category : #accessing }
-SpecOfObjectItselfProperty >> value [
+SpecOfShouldExpressionObjectReceiver >> validationSubject [
 	^ value
 ]
 
 { #category : #accessing }
-SpecOfObjectItselfProperty >> value: anObject [
+SpecOfShouldExpressionObjectReceiver >> value [
+	^value
+]
+
+{ #category : #accessing }
+SpecOfShouldExpressionObjectReceiver >> value: anObject [
 	value := anObject
 ]

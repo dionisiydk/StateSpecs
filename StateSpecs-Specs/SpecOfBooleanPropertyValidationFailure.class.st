@@ -12,6 +12,5 @@ Class {
 SpecOfBooleanPropertyValidationFailure >> description [
 	subjectOwner ifNil: [ ^subject stringForSpecValidation , ' ' , spec description].
 	
-	^super description
-	
+	^(subjectOwner printSubject: subject)  , ' ' , spec description
 ]

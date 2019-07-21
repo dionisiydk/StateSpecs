@@ -89,7 +89,8 @@ SpecOfShouldExpressionTests >> testCreationFromObject [
 	subject := Object new.
 	result := subject should.
 	self assert: (result isKindOf: SpecOfShouldExpression).
-	self assert: result receiver == subject
+	self assert: result receiver class == SpecOfShouldExpressionObjectReceiver.
+	self assert: result receiver value == subject
 ]
 
 { #category : #tests }
@@ -240,7 +241,7 @@ SpecOfShouldExpressionTests >> testPropertyBuilderPrinting [
 	
 	actual := propertyBuilder printString.
 	
-	self assert: actual equals: 'Got "10" from (10@20) x'
+	self assert: actual equals: 'Got 10 from (10@20) x'
 ]
 
 { #category : #tests }
@@ -261,7 +262,7 @@ SpecOfShouldExpressionTests >> testPropertyValidationFailureDescription [
 	[(10 @ 20) where x should equal: 30] on: SpecOfFailed do: [:err | 
 		errorMessage := err messageText].
 	
-	self assert: errorMessage equals: 'Got "10" from (10@20) x but it should equal "30"'
+	self assert: errorMessage equals: 'Got 10 from (10@20) x but it should equal 30'
 ]
 
 { #category : #tests }
@@ -278,7 +279,7 @@ SpecOfShouldExpressionTests >> testPropertyWithArgsValidationFailureDescription 
 	[((0 @ 1) where distanceTo: (0@2)) should equal: 30] on: SpecOfFailed do: [:err | 
 		errorMessage := err messageText].
 	
-	self assert: errorMessage equals: 'Got "1" from (0@1) distanceTo: (0@2) but it should equal "30"'
+	self assert: errorMessage equals: 'Got 1 from (0@1) distanceTo: (0@2) but it should equal 30'
 ]
 
 { #category : #tests }
@@ -288,7 +289,7 @@ SpecOfShouldExpressionTests >> testPropertyWithBooleanSubPropertyValidation [
 	self should: [#(first #(1 2)) where second should be isEmpty] raise: SpecOfFailed.
 	
 	[#(first #(1 2)) where second should be isEmpty] on: SpecOfFailed do: [:err | 
-		self assert: err messageText equals: 'Got "#(1 2)" from #(#first #(1 2)) second but it should be isEmpty'	
+		self assert: err messageText equals: '#(1 2) from #(#first #(1 2)) second should be isEmpty'	
 	].
 ]
 
@@ -298,7 +299,7 @@ SpecOfShouldExpressionTests >> testPropertyWithBooleanSubPropertyValidationWhenS
 	self should: [#(first #()) where second should not be isEmpty] raise: SpecOfFailed.
 	
 	[#(first #()) where second should not be isEmpty] on: SpecOfFailed do: [:err | 
-		self assert: err messageText equals: 'Got "#()" from #(#first #()) second but it should not be isEmpty'	
+		self assert: err messageText equals: '#() from #(#first #()) second should not be isEmpty'	
 	].
 ]
 
@@ -434,7 +435,7 @@ SpecOfShouldExpressionTests >> testTakeAWhile [
 ]
 
 { #category : #tests }
-SpecOfShouldExpressionTests >> testTakeAWhileWithBePredicateProperty [
+SpecOfShouldExpressionTests >> testTakeAWhileWithBeBooleanProperty [
 	| value |
 	value := #() asOrderedCollection.
 	self shouldnt: [[value] should takeAWhile to be isEmpty] raise: SpecOfFailed.
@@ -458,4 +459,15 @@ SpecOfShouldExpressionTests >> testTakeAWhileWithPriorNegation [
 	self should: [[value] should not takeAWhile to be: #anotherValue] raise: SpecOfFailed.
 	
 	
+]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithPropertyValidation [
+	| object |
+	object := {#item}.
+	self shouldnt: [[object] where first should takeAWhile to be: #item] raise: SpecOfFailed.
+	self should: [[object] where first should takeAWhile to be: #anotherItem] raise: SpecOfFailed.
+	
+	[ object at: 1 put: #anotherItem ] fork.
+	[object] where first should takeAWhile to be: #anotherItem
 ]

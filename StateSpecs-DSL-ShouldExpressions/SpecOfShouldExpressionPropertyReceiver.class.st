@@ -10,10 +10,10 @@ in case of property ""x"" of point (10@20).
 
 My instances can be created by 
 	
-	SpecOfObjectProperty of: 	parentProperty message: aMessage 
+	SpecOfShouldExpressionPropertyReceiver of: 	parentProperty message: aMessage 
 
 But in practice SpecOfObjectPropertyBuilder is used to create properties by normal message sends.
-	(10@20) which x 
+	(10@20) where x 
 
 Public API and Key Messages
 
@@ -29,75 +29,84 @@ Internal Representation and Key Implementation Points.
 	value:		<Object>
 "
 Class {
-	#name : #SpecOfObjectProperty,
-	#superclass : #Object,
+	#name : #SpecOfShouldExpressionPropertyReceiver,
+	#superclass : #SpecOfShouldExpressionReceiver,
 	#instVars : [
 		'parent',
 		'parentMessage',
 		'value'
 	],
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #'instance creation' }
-SpecOfObjectProperty class >> of: anObjectProperty message: aMessage [
+SpecOfShouldExpressionPropertyReceiver class >> of: anObjectProperty message: aMessage [
 
 	^self new 
 		parent: anObjectProperty;
-		parentMessage: aMessage;
-		updateValue;
-		yourself
+		parentMessage: aMessage
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> parent [
+SpecOfShouldExpressionPropertyReceiver >> parent [
 	^ parent
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> parent: anObject [
+SpecOfShouldExpressionPropertyReceiver >> parent: anObject [
 	parent := anObject
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> parentMessage [
+SpecOfShouldExpressionPropertyReceiver >> parentMessage [
 	^ parentMessage
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> parentMessage: anObject [
+SpecOfShouldExpressionPropertyReceiver >> parentMessage: anObject [
 	parentMessage := anObject
 ]
 
 { #category : #printing }
-SpecOfObjectProperty >> printOn: aStream [
+SpecOfShouldExpressionPropertyReceiver >> printOn: aStream [
 
-	aStream << '"' << value asString << '" from ' << self stringForSpecTitle
-
+	aStream nextPutAll: (self printSubject: self validationSubject)
 ]
 
 { #category : #printing }
-SpecOfObjectProperty >> stringForSpecTitle [ 
+SpecOfShouldExpressionPropertyReceiver >> printSubject: anObject [
+
+	^(super printSubject: anObject) , ' from ', self stringForSpecValidation
+]
+
+{ #category : #printing }
+SpecOfShouldExpressionPropertyReceiver >> stringForSpecTitle [ 
 	^parent stringForSpecTitle, ' ', parentMessage printString.
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> subPropertyAt: aMessage [
+SpecOfShouldExpressionPropertyReceiver >> subPropertyAt: aMessage [
 
-	^SpecOfObjectProperty of: self message: aMessage
+	^SpecOfShouldExpressionPropertyReceiver of: self message: aMessage
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> updateValue [
-	value := parentMessage sendTo: parent value
+SpecOfShouldExpressionPropertyReceiver >> updateValue [
+	value := parentMessage sendTo: parent validationSubject
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> value [
+SpecOfShouldExpressionPropertyReceiver >> validationSubject [
+	self updateValue.
 	^ value
 ]
 
 { #category : #accessing }
-SpecOfObjectProperty >> value: anObject [
+SpecOfShouldExpressionPropertyReceiver >> value [
+	value
+]
+
+{ #category : #accessing }
+SpecOfShouldExpressionPropertyReceiver >> value: anObject [
 	value := anObject
 ]

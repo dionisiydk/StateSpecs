@@ -46,19 +46,24 @@ SpecOfShouldExpression class >> currentExpressionsClass [
 
 { #category : #'instance creation' }
 SpecOfShouldExpression class >> for: anObject [
-	^self new 
-		receiver: anObject
-]
-
-{ #category : #'instance creation' }
-SpecOfShouldExpression class >> for: anObject withNegation: aBoolean [
-	^(self for: anObject)
-		withNegation: aBoolean
+	^self withReceiver: (SpecOfShouldExpressionObjectReceiver from: anObject)
 ]
 
 { #category : #'instance creation' }
 SpecOfShouldExpression class >> startingAt: anObject [
 	^self currentExpressionsClass for: anObject
+]
+
+{ #category : #'instance creation' }
+SpecOfShouldExpression class >> withReceiver: aShouldExpressionReceiver [
+	^self new 
+		receiver: aShouldExpressionReceiver
+]
+
+{ #category : #'instance creation' }
+SpecOfShouldExpression class >> withReceiver: aShouldExpressionReceiver negation: aBoolean [
+	^(self withReceiver: aShouldExpressionReceiver)
+		withNegation: aBoolean
 ]
 
 { #category : #expressions }
@@ -261,9 +266,9 @@ SpecOfShouldExpression >> takeAWhile [
 		"The expression 'should not takeAWhile' logically means 
 		that following condition should be already true without any waiting. 
 		And it makes it equivalent to simple should expression"
-		 ^self class for: receiver value ].
+		 ^self class withReceiver: receiver ].
 	
-	^SpecOfFutureShouldExpression for: receiver
+	^SpecOfFutureShouldExpression withReceiver: receiver
 ]
 
 { #category : #expressions }
@@ -277,13 +282,18 @@ SpecOfShouldExpression >> to [
 	^self
 ]
 
+{ #category : #accessing }
+SpecOfShouldExpression >> validationSubject [
+	^receiver validationSubject
+]
+
 { #category : #verification }
 SpecOfShouldExpression >> verify: aSpecOfObjectState [
 
 	| result |
 	aSpecOfObjectState denial: withNegation.
-	result := aSpecOfObjectState validate: receiver.
-	result isFailure ifTrue: [ result subjectOwner: receiverOwner ].
+	result := aSpecOfObjectState validate: self validationSubject.
+	result isFailure ifTrue: [ result subjectOwner: receiver ].
 	^ result raise 
 ]
 
