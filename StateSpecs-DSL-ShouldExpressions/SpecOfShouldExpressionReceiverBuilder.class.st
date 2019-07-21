@@ -24,7 +24,7 @@ Class {
 SpecOfShouldExpressionReceiverBuilder class >> for: anObject [
 
 	^self new 
-		receiver: anObject asShouldExpressionReceiver
+		receiver: (SpecOfShouldExpressionObjectReceiver from: anObject)
 ]
 
 { #category : #dispatching }

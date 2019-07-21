@@ -266,7 +266,7 @@ SpecOfShouldExpression >> takeAWhile [
 		"The expression 'should not takeAWhile' logically means 
 		that following condition should be already true without any waiting. 
 		And it makes it equivalent to simple should expression"
-		 ^self class withReceiver: receiver ].
+		 ^self class withReceiver: receiver asNegatedFutureStateRecever].
 	
 	^SpecOfFutureShouldExpression withReceiver: receiver
 ]

@@ -82,6 +82,14 @@ SpecOfFutureStateTests >> testHasDefaultMaxWaitingTime [
 ]
 
 { #category : #tests }
+SpecOfFutureStateTests >> testMatchesSimpleObjectInValidState [
+
+	| spec |
+	spec := SpecOfFutureState requiredState: #expectedValue.
+	self assert: (spec matches: #expectedValue)
+]
+
+{ #category : #tests }
 SpecOfFutureStateTests >> testMatchesStateWhichBecomeValidAfterAWhile [
 
 	| spec value actual process |
@@ -111,6 +119,16 @@ SpecOfFutureStateTests >> testNotMatchesStateWhichDoNotBecomeValidAfterMaxWaitin
 
 	actual := spec matches: [#wrongValue].
 	self deny: actual
+]
+
+{ #category : #tests }
+SpecOfFutureStateTests >> testSucceedValidationOfSimpleObject [
+
+	| spec result |
+	spec := SpecOfFutureState requiredState: #expectedValue.
+	
+	result := spec validate: #expectedValue.
+	self assert: result isSuccess
 ]
 
 { #category : #tests }

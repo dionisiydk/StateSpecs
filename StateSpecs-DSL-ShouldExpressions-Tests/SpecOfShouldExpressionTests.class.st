@@ -465,9 +465,9 @@ SpecOfShouldExpressionTests >> testTakeAWhileWithPriorNegation [
 SpecOfShouldExpressionTests >> testTakeAWhileWithPropertyValidation [
 	| object |
 	object := {#item}.
-	self shouldnt: [[object] where first should takeAWhile to be: #item] raise: SpecOfFailed.
-	self should: [[object] where first should takeAWhile to be: #anotherItem] raise: SpecOfFailed.
+	self shouldnt: [object where first should takeAWhile to be: #item] raise: SpecOfFailed.
+	self should: [object where first should takeAWhile to be: #anotherItem] raise: SpecOfFailed.
 	
 	[ object at: 1 put: #anotherItem ] fork.
-	[object] where first should takeAWhile to be: #anotherItem
+	self shouldnt: [object where first should takeAWhile to be: #anotherItem] raise: SpecOfFailed
 ]

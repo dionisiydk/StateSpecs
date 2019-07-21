@@ -20,6 +20,11 @@ SpecOfShouldExpressionReceiver class >> isAbstract [
 	^self = SpecOfShouldExpressionReceiver
 ]
 
+{ #category : #converting }
+SpecOfShouldExpressionReceiver >> asNegatedFutureStateRecever [
+	^self
+]
+
 { #category : #printing }
 SpecOfShouldExpressionReceiver >> printSubject: anObject [
 
@@ -34,4 +39,9 @@ SpecOfShouldExpressionReceiver >> subPropertyAt: aMessage [
 { #category : #accessing }
 SpecOfShouldExpressionReceiver >> validationSubject [
 	self subclassResponsibility 
+]
+
+{ #category : #accessing }
+SpecOfShouldExpressionReceiver >> valueForFutureStateValidation [ 
+	^self subclassResponsibility 
 ]

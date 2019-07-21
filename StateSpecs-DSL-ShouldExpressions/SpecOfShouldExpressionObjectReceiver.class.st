@@ -19,7 +19,7 @@ Internal Representation and Key Implementation Points.
 "
 Class {
 	#name : #SpecOfShouldExpressionObjectReceiver,
-	#superclass : #SpecOfShouldExpressionRootReceiver,
+	#superclass : #SpecOfShouldExpressionReceiver,
 	#instVars : [
 		'value'
 	],
@@ -32,9 +32,20 @@ SpecOfShouldExpressionObjectReceiver class >> from: anObject [
 		value: anObject
 ]
 
+{ #category : #converting }
+SpecOfShouldExpressionObjectReceiver >> asNegatedFutureStateRecever [
+	^self class from: value valueForFutureStateValidation 
+]
+
 { #category : #printing }
 SpecOfShouldExpressionObjectReceiver >> stringForSpecTitle [ 
 	^value stringForSpecTitle 
+]
+
+{ #category : #accessing }
+SpecOfShouldExpressionObjectReceiver >> subPropertyAt: aMessage [
+
+	^SpecOfShouldExpressionPropertyReceiver of: self message: aMessage
 ]
 
 { #category : #accessing }
@@ -50,4 +61,9 @@ SpecOfShouldExpressionObjectReceiver >> value [
 { #category : #accessing }
 SpecOfShouldExpressionObjectReceiver >> value: anObject [
 	value := anObject
+]
+
+{ #category : #accessing }
+SpecOfShouldExpressionObjectReceiver >> valueForFutureStateValidation [ 
+	^value valueForFutureStateValidation
 ]

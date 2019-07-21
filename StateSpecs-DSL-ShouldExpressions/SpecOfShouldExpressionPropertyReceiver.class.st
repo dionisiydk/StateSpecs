@@ -110,3 +110,8 @@ SpecOfShouldExpressionPropertyReceiver >> value [
 SpecOfShouldExpressionPropertyReceiver >> value: anObject [
 	value := anObject
 ]
+
+{ #category : #accessing }
+SpecOfShouldExpressionPropertyReceiver >> valueForFutureStateValidation [ 
+	^self validationSubject
+]

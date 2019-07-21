@@ -57,10 +57,10 @@ SpecOfFutureState class >> requiredState: anObjectOrSpec waitWithin: maxWaitingD
 ]
 
 { #category : #testing }
-SpecOfFutureState >> basicMatches: aBlock [
+SpecOfFutureState >> basicMatches: anObjectOrBlock [
 
 	^self 
-		tryWaitUntil: [ requiredState matches: aBlock value ]
+		tryWaitUntil: [ requiredState matches: anObjectOrBlock valueForFutureStateValidation ]
 		willMatch: [ :matchResult | matchResult ]
 ]
 
@@ -142,9 +142,9 @@ SpecOfFutureState >> tryWaitUntil: stateBlock willMatch: conditionBlock [
 ]
 
 { #category : #validation }
-SpecOfFutureState >> validate: aBlock [
+SpecOfFutureState >> validate: anObjectOrBlock [
 
 	^self 
-		tryWaitUntil: [ requiredState validate: aBlock value ]
+		tryWaitUntil: [ requiredState validate: anObjectOrBlock valueForFutureStateValidation ]
 		willMatch: [ :validationResult | validationResult isSuccess ]
 ]
