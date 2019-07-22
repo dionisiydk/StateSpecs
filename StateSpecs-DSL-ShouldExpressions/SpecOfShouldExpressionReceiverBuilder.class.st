@@ -23,8 +23,14 @@ Class {
 { #category : #'instance creation' }
 SpecOfShouldExpressionReceiverBuilder class >> for: anObject [
 
+	^self startingWith: (SpecOfShouldExpressionObjectReceiver from: anObject)
+]
+
+{ #category : #'instance creation' }
+SpecOfShouldExpressionReceiverBuilder class >> startingWith: aShouldExpressionReceiver [
+
 	^self new 
-		receiver: (SpecOfShouldExpressionObjectReceiver from: anObject)
+		receiver: aShouldExpressionReceiver 
 ]
 
 { #category : #dispatching }
