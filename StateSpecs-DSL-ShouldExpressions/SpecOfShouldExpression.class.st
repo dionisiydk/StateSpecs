@@ -73,7 +73,7 @@ SpecOfShouldExpression >> be [
 
 { #category : #expressions }
 SpecOfShouldExpression >> be: anObject [ 
-	^self verify: (SpecOfIdentity requiredValue: anObject)
+	^self evaluateWith: (SpecOfIdentity requiredValue: anObject)
 ]
 
 { #category : #expressions }
@@ -82,37 +82,37 @@ SpecOfShouldExpression >> be: anObject description: failureDescription [
 	spec := (SpecOfIdentity requiredValue: anObject).
 	spec failureDescription: failureDescription.
 	
-	^self verify: spec
+	^self evaluateWith: spec
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> beGreaterOrEqualThan: anObject [
-	^self verify: (SpecOfGreaterMagnitude than: anObject strong: false)
+	^self evaluateWith: (SpecOfGreaterMagnitude than: anObject strong: false)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> beGreaterThan: anObject [
-	^self verify: (SpecOfGreaterMagnitude than: anObject strong: true)
+	^self evaluateWith: (SpecOfGreaterMagnitude than: anObject strong: true)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> beInstanceOf: aClass [ 
-	^self verify: (SpecOfObjectClass requiredClass: aClass)
+	^self evaluateWith: (SpecOfObjectClass requiredClass: aClass)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> beKindOf: aClass [ 
-	^self verify: (SpecOfObjectSuperclass requiredClass: aClass)
+	^self evaluateWith: (SpecOfObjectSuperclass requiredClass: aClass)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> beLessOrEqualThan: anObject [
-	^self verify: (SpecOfLesserMagnitude than: anObject strong: false)
+	^self evaluateWith: (SpecOfLesserMagnitude than: anObject strong: false)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> beLessThan: anObject [
-	^self verify: (SpecOfLesserMagnitude than: anObject strong: true)
+	^self evaluateWith: (SpecOfLesserMagnitude than: anObject strong: true)
 ]
 
 { #category : #expressions }
@@ -127,27 +127,27 @@ SpecOfShouldExpression >> beOrderedEqualTo: aCollection [
 
 { #category : #expressions }
 SpecOfShouldExpression >> beginWith: aString [
-	^ self verify: (SpecOfStringBeginning requiredValue: aString)
+	^ self evaluateWith: (SpecOfStringBeginning requiredValue: aString)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> beginWith: aString caseSensitive: aBool [
-	^ self verify: (SpecOfStringBeginning requiredValue: aString caseSensitive: aBool)
+	^ self evaluateWith: (SpecOfStringBeginning requiredValue: aString caseSensitive: aBool)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> endWith: aString [
-	^ self verify: (SpecOfStringEnding requiredValue: aString)
+	^ self evaluateWith: (SpecOfStringEnding requiredValue: aString)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> endWith: aString caseSensitive: aBool [
-	^ self verify: (SpecOfStringEnding requiredValue: aString caseSensitive: aBool)
+	^ self evaluateWith: (SpecOfStringEnding requiredValue: aString caseSensitive: aBool)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> equal: anObject [ 
-	^self verify: (SpecOfEquality requiredValue: anObject)
+	^self evaluateWith: (SpecOfEquality requiredValue: anObject)
 ]
 
 { #category : #expressions }
@@ -156,17 +156,27 @@ SpecOfShouldExpression >> equal: anObject description: failureDescription [
 	spec := (SpecOfEquality requiredValue: anObject) .
 	spec failureDescription: failureDescription.
 	
-	^self verify: spec
+	^self evaluateWith: spec
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> equal: aNumber within: accuracyNumber [ 
-	^self verify: (SpecOfApproxEquality to: aNumber within: accuracyNumber)
+	^self evaluateWith: (SpecOfApproxEquality to: aNumber within: accuracyNumber)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> equalInOrder: anObject [ 
-	^self verify: (SpecOfCollectionOrderedEquality requiredValue: anObject)
+	^self evaluateWith: (SpecOfCollectionOrderedEquality requiredValue: anObject)
+]
+
+{ #category : #execution }
+SpecOfShouldExpression >> evaluateWith: aSpecOfObjectState [
+
+	| result |
+	aSpecOfObjectState denial: withNegation.
+	result := aSpecOfObjectState validate: self validationSubject.
+	result isFailure ifTrue: [ result subjectOwner: receiver ].
+	^ result raise 
 ]
 
 { #category : #expressions }
@@ -176,32 +186,32 @@ SpecOfShouldExpression >> fail [
 
 { #category : #expressions }
 SpecOfShouldExpression >> haveSize: aNumber [ 
-	^self verify: (SpecOfCollectionSize requiredSize: aNumber)
+	^self evaluateWith: (SpecOfCollectionSize requiredSize: aNumber)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> include: anObjectOrSpec [
-	^ self verify: (SpecOfCollectionContents requiredItem: anObjectOrSpec)
+	^ self evaluateWith: (SpecOfCollectionContents requiredItem: anObjectOrSpec)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> include: itemObject at: keyObject [
-	^self verify: (SpecOfCollectionItem at: keyObject requiredItem: itemObject)
+	^self evaluateWith: (SpecOfCollectionItem at: keyObject requiredItem: itemObject)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> includeKey: anObject [ 
-	^self verify: (SpecOfDictionaryKeys requiredKey: anObject)
+	^self evaluateWith: (SpecOfDictionaryKeys requiredKey: anObject)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> includeSubstring: aString [
-	^ self verify: (SpecOfSubstring requiredValue: aString)
+	^ self evaluateWith: (SpecOfSubstring requiredValue: aString)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> includeSubstring: aString caseSensitive: aBool [
-	^ self verify: (SpecOfSubstring requiredValue: aString caseSensitive: aBool)
+	^ self evaluateWith: (SpecOfSubstring requiredValue: aString caseSensitive: aBool)
 ]
 
 { #category : #initialization }
@@ -212,12 +222,12 @@ SpecOfShouldExpression >> initialize [
 
 { #category : #expressions }
 SpecOfShouldExpression >> matchRegex: aRegexString [
-	^ self verify: (SpecOfStringRegex requiredValue: aRegexString)
+	^ self evaluateWith: (SpecOfStringRegex requiredValue: aRegexString)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> matchRegex: aRegexString caseSensitive: aBool [
-	^ self verify: (SpecOfStringRegex requiredValue: aRegexString caseSensitive: aBool)
+	^ self evaluateWith: (SpecOfStringRegex requiredValue: aRegexString caseSensitive: aBool)
 ]
 
 { #category : #expressions }
@@ -227,7 +237,7 @@ SpecOfShouldExpression >> not [
 
 { #category : #expressions }
 SpecOfShouldExpression >> raise: aClass [ 
-	^self verify: (SpecOfBlockFailure requiredFailure: aClass)
+	^self evaluateWith: (SpecOfBlockFailure requiredFailure: aClass)
 ]
 
 { #category : #accessing }
@@ -252,12 +262,12 @@ SpecOfShouldExpression >> receiverOwner: anObject [
 
 { #category : #expressions }
 SpecOfShouldExpression >> respondTo: aSelector [ 
-	^self verify: (SpecOfObjectResponsibility for: aSelector)
+	^self evaluateWith: (SpecOfObjectResponsibility for: aSelector)
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> satisfy: aBlock [
-	^self verify: (SpecOfObjectStateByPredicate from: aBlock)
+	^self evaluateWith: (SpecOfObjectStateByPredicate from: aBlock)
 ]
 
 { #category : #expressions }
@@ -282,19 +292,15 @@ SpecOfShouldExpression >> to [
 	^self
 ]
 
+{ #category : #execution }
+SpecOfShouldExpression >> validate: aSpecOfObjectState [
+
+	^aSpecOfObjectState validate: self validationSubject
+]
+
 { #category : #accessing }
 SpecOfShouldExpression >> validationSubject [
 	^receiver validationSubject
-]
-
-{ #category : #verification }
-SpecOfShouldExpression >> verify: aSpecOfObjectState [
-
-	| result |
-	aSpecOfObjectState denial: withNegation.
-	result := aSpecOfObjectState validate: self validationSubject.
-	result isFailure ifTrue: [ result subjectOwner: receiver ].
-	^ result raise 
 ]
 
 { #category : #accessing }

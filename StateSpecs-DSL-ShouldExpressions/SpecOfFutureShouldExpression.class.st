@@ -4,6 +4,12 @@ Class {
 	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
+{ #category : #verification }
+SpecOfFutureShouldExpression >> evaluateWith: aSpecOfObjectState [
+
+	^super evaluateWith: ( SpecOfFutureState requiredState: aSpecOfObjectState) 
+]
+
 { #category : #accessing }
 SpecOfFutureShouldExpression >> to [ 
 	"Helper message for readability of should expressions:
@@ -13,17 +19,12 @@ SpecOfFutureShouldExpression >> to [
 	^self
 ]
 
-{ #category : #accessing }
-SpecOfFutureShouldExpression >> validationSubject [
+{ #category : #execution }
+SpecOfFutureShouldExpression >> validate: aSpecOfObjectState [
 	"The spec of future state validates any kind of object using its value
-	Spec evaluates the value periodically to detect when it will finally satisfy condition.
-	Returing receiver here allows to use objects instead of block in takeAWhile expressions.
+	Spec evaluates the value periodically to detect when it will finaly satisfy condition.
+	Using receiver here allows to use object instead of block in takeAWhile expressions.
 	Receiver will return updated state every time the spec will ask it for new value"
-	^receiver
-]
 
-{ #category : #verification }
-SpecOfFutureShouldExpression >> verify: aSpecOfObjectState [
-
-	^super verify: ( SpecOfFutureState requiredState: aSpecOfObjectState) 
+	^aSpecOfObjectState validate: receiver
 ]

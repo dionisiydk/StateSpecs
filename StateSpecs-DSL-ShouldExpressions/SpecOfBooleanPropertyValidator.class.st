@@ -39,7 +39,7 @@ SpecOfBooleanPropertyValidator >> doesNotUnderstand: aMessage [
 
 	| spec |
 	spec := SpecOfBooleanProperty fromMessage: aMessage.
-	^ shouldExpression verify: spec
+	^ shouldExpression evaluateWith: spec
 ]
 
 { #category : #accessing }
