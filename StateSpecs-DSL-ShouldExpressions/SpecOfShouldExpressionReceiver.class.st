@@ -31,6 +31,11 @@ SpecOfShouldExpressionReceiver >> printSubject: anObject [
 	^anObject stringForSpecValidation
 ]
 
+{ #category : #asserting }
+SpecOfShouldExpressionReceiver >> should [
+	^SpecOfShouldExpression currentExpressionsClass withReceiver: self
+]
+
 { #category : #accessing }
 SpecOfShouldExpressionReceiver >> subPropertyAt: aMessage [
 	self subclassResponsibility 
