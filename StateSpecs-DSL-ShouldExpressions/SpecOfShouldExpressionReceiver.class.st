@@ -50,3 +50,8 @@ SpecOfShouldExpressionReceiver >> validationSubject [
 SpecOfShouldExpressionReceiver >> valueForFutureStateValidation [ 
 	^self subclassResponsibility 
 ]
+
+{ #category : #asserting }
+SpecOfShouldExpressionReceiver >> where [
+	^SpecOfShouldExpressionReceiverBuilder startingWith: self
+]
