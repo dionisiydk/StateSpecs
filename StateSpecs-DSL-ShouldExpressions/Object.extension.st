@@ -8,7 +8,7 @@ Object >> asShouldExpressionReceiver [
 
 { #category : #'*StateSpecs-DSL-ShouldExpressions' }
 Object >> should [
-	^SpecOfShouldExpression startingAt: self
+	^self asShouldExpressionReceiver should
 ]
 
 { #category : #'*StateSpecs-DSL-ShouldExpressions' }

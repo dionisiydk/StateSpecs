@@ -27,6 +27,11 @@ SpecOfShouldExpressionReceiverBuilder class >> startingWith: aShouldExpressionRe
 		receiver: aShouldExpressionReceiver 
 ]
 
+{ #category : #converting }
+SpecOfShouldExpressionReceiverBuilder >> asShouldExpressionReceiver [ 
+	^receiver
+]
+
 { #category : #dispatching }
 SpecOfShouldExpressionReceiverBuilder >> doesNotUnderstand: aMessage [
 
@@ -51,12 +56,6 @@ SpecOfShouldExpressionReceiverBuilder >> receiver [
 { #category : #accessing }
 SpecOfShouldExpressionReceiverBuilder >> receiver: anObject [
 	receiver := anObject
-]
-
-{ #category : #accessing }
-SpecOfShouldExpressionReceiverBuilder >> should [
-
-	^SpecOfShouldExpression withReceiver: receiver
 ]
 
 { #category : #accessing }
