@@ -26,9 +26,19 @@ SpecOfShouldExpressionReceiver >> asNegatedFutureStateRecever [
 ]
 
 { #category : #printing }
+SpecOfShouldExpressionReceiver >> printPath [
+	^''
+]
+
+{ #category : #printing }
+SpecOfShouldExpressionReceiver >> printProperty: aShouldExpressionReceiverProperty [
+	^self stringForSpecTitle, ' ', aShouldExpressionReceiverProperty printPath.
+]
+
+{ #category : #printing }
 SpecOfShouldExpressionReceiver >> printSubject: anObject [
 
-	^anObject stringForSpecValidation
+	^anObject stringForSpecTitle
 ]
 
 { #category : #asserting }

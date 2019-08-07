@@ -29,7 +29,7 @@ Internal Representation and Key Implementation Points.
 	value:		<Object>
 "
 Class {
-	#name : #SpecOfShouldExpressionPropertyReceiver,
+	#name : #SpecOfShouldExpressionReceiverProperty,
 	#superclass : #SpecOfShouldExpressionReceiver,
 	#instVars : [
 		'parent',
@@ -40,7 +40,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpecOfShouldExpressionPropertyReceiver class >> of: anObjectProperty message: aMessage [
+SpecOfShouldExpressionReceiverProperty class >> of: anObjectProperty message: aMessage [
 
 	^self new 
 		parent: anObjectProperty;
@@ -48,70 +48,82 @@ SpecOfShouldExpressionPropertyReceiver class >> of: anObjectProperty message: aM
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> parent [
+SpecOfShouldExpressionReceiverProperty >> parent [
 	^ parent
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> parent: anObject [
+SpecOfShouldExpressionReceiverProperty >> parent: anObject [
 	parent := anObject
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> parentMessage [
+SpecOfShouldExpressionReceiverProperty >> parentMessage [
 	^ parentMessage
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> parentMessage: anObject [
+SpecOfShouldExpressionReceiverProperty >> parentMessage: anObject [
 	parentMessage := anObject
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionPropertyReceiver >> printOn: aStream [
+SpecOfShouldExpressionReceiverProperty >> printOn: aStream [
 
 	aStream nextPutAll: (self printSubject: self validationSubject)
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionPropertyReceiver >> printSubject: anObject [
-
-	^(super printSubject: anObject) , ' from ', self stringForSpecValidation
+SpecOfShouldExpressionReceiverProperty >> printPath [
+	^parent printPath
+		ifEmpty: [parentMessage printString]
+		ifNotEmpty: [ :path | path , ' ' , parentMessage printString ]
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionPropertyReceiver >> stringForSpecTitle [ 
-	^parent stringForSpecTitle, ' ', parentMessage printString.
+SpecOfShouldExpressionReceiverProperty >> printProperty: aShouldExpressionReceiverProperty [
+	^parent printProperty: aShouldExpressionReceiverProperty
+]
+
+{ #category : #printing }
+SpecOfShouldExpressionReceiverProperty >> printSubject: anObject [
+
+	^(super printSubject: anObject) , ' from ', self stringForSpecTitle
+]
+
+{ #category : #printing }
+SpecOfShouldExpressionReceiverProperty >> stringForSpecTitle [ 
+	^parent printProperty: self
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> subPropertyAt: aMessage [
+SpecOfShouldExpressionReceiverProperty >> subPropertyAt: aMessage [
 
-	^SpecOfShouldExpressionPropertyReceiver of: self message: aMessage
+	^SpecOfShouldExpressionReceiverProperty of: self message: aMessage
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> updateValue [
+SpecOfShouldExpressionReceiverProperty >> updateValue [
 	value := parentMessage sendTo: parent validationSubject
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> validationSubject [
+SpecOfShouldExpressionReceiverProperty >> validationSubject [
 	self updateValue.
 	^ value
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> value [
+SpecOfShouldExpressionReceiverProperty >> value [
 	value
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> value: anObject [
+SpecOfShouldExpressionReceiverProperty >> value: anObject [
 	value := anObject
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionPropertyReceiver >> valueForFutureStateValidation [ 
+SpecOfShouldExpressionReceiverProperty >> valueForFutureStateValidation [ 
 	^self validationSubject
 ]

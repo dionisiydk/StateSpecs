@@ -45,7 +45,7 @@ SpecOfShouldExpressionObjectReceiver >> stringForSpecTitle [
 { #category : #accessing }
 SpecOfShouldExpressionObjectReceiver >> subPropertyAt: aMessage [
 
-	^SpecOfShouldExpressionPropertyReceiver of: self message: aMessage
+	^SpecOfShouldExpressionReceiverProperty of: self message: aMessage
 ]
 
 { #category : #accessing }
