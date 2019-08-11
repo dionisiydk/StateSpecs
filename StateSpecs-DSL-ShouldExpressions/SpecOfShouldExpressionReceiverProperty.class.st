@@ -107,6 +107,11 @@ SpecOfShouldExpressionReceiverProperty >> updateValue [
 	value := parentMessage sendTo: parent validationSubject
 ]
 
+{ #category : #validation }
+SpecOfShouldExpressionReceiverProperty >> validate [
+	^parent validate
+]
+
 { #category : #accessing }
 SpecOfShouldExpressionReceiverProperty >> validationSubject [
 	self updateValue.

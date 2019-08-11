@@ -35,9 +35,6 @@ SpecOfShouldExpressionReceiverBuilder >> asShouldExpressionReceiver [
 { #category : #dispatching }
 SpecOfShouldExpressionReceiverBuilder >> doesNotUnderstand: aMessage [
 
-	(receiver validationSubject respondsTo: aMessage selector) 
-		ifFalse: [ ^aMessage sendTo: receiver validationSubject ].
-	
 	receiver := receiver subPropertyAt: aMessage
 ]
 

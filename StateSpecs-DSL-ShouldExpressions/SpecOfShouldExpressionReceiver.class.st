@@ -57,9 +57,21 @@ SpecOfShouldExpressionReceiver >> subPropertyAt: aMessage [
 ]
 
 { #category : #validation }
+SpecOfShouldExpressionReceiver >> validate [
+	"Subclasses can define some logical conditions on where
+	they can be really used before actual validation of subject.
+	For example argument capture in Mocketry verifies that expected message was actually sent"
+	
+	^SpecOfValidationResult success
+]
+
+{ #category : #validation }
 SpecOfShouldExpressionReceiver >> validate: aSpecOfObjectState [
 
 	| result |
+	result := self validate.
+	result isSuccess ifFalse: [ ^result ].
+	
 	result := aSpecOfObjectState validate: self validationSubject.
 	result subjectOwner: self.
 	^result
