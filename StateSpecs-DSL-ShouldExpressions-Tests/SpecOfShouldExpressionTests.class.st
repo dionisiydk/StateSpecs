@@ -446,6 +446,14 @@ SpecOfShouldExpressionTests >> testTakeAWhileWithBeBooleanProperty [
 ]
 
 { #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithGivenTimeout [
+	| value |
+	[ value := #expectedValue ] fork.	
+	self shouldnt: [([value] should take: 1 second) to be: #expectedValue] raise: SpecOfFailed.
+	self should: [([value] should take: 10 milliSeconds) to be: #newValue] raise: SpecOfFailed
+]
+
+{ #category : #tests }
 SpecOfShouldExpressionTests >> testTakeAWhileWithPriorNegation [
 	"The expression 'should not takeAWhile' logically means 
 	that following condition should be already true without any waiting. 

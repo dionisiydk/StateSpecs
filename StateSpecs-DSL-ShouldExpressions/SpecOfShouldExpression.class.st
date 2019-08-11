@@ -261,19 +261,29 @@ SpecOfShouldExpression >> satisfy: aBlock [
 ]
 
 { #category : #expressions }
+SpecOfShouldExpression >> take: maxDuration [
+	^self takeAWhile 
+		maxWaitingTime: maxDuration;
+		yourself
+]
+
+{ #category : #expressions }
 SpecOfShouldExpression >> takeAWhile [
 	withNegation ifTrue: [
 		"The expression 'should not takeAWhile' logically means 
 		that following condition should be already true without any waiting. 
 		And it makes it equivalent to simple should expression"
-		 ^self class withReceiver: receiver asNegatedFutureStateRecever].
+		 ^self class withReceiver: receiver asNegatedFutureStateShouldRecever].
 	
-	^SpecOfFutureShouldExpression withReceiver: receiver
+	^SpecOfFutureShouldExpression withReceiver: receiver asFutureStateShouldReceiver
 ]
 
 { #category : #expressions }
 SpecOfShouldExpression >> to [ 
-	"Helper message for readability of 'should not takeAWhile' expressions:
+	"Helper message for readability of should expressions:
+		some should takeAWhile to be: 10
+		(some should take: 10 seconds) to be: 10
+	It is defined here to support negated case: 
 		some not should takeAWhile to be: 10
 		(some not should take: 10 seconds) to be: 10
 	In that case 'should not takeAWhile' returns simple should expression 
@@ -285,7 +295,7 @@ SpecOfShouldExpression >> to [
 { #category : #execution }
 SpecOfShouldExpression >> validate: aSpecOfObjectState [
 
-	^aSpecOfObjectState validate: self validationSubject
+	^receiver validate: aSpecOfObjectState
 ]
 
 { #category : #accessing }

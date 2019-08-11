@@ -122,8 +122,3 @@ SpecOfShouldExpressionReceiverProperty >> value [
 SpecOfShouldExpressionReceiverProperty >> value: anObject [
 	value := anObject
 ]
-
-{ #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> valueForFutureStateValidation [ 
-	^self validationSubject
-]

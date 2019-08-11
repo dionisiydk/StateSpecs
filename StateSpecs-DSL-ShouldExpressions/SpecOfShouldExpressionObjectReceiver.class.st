@@ -33,7 +33,12 @@ SpecOfShouldExpressionObjectReceiver class >> from: anObject [
 ]
 
 { #category : #converting }
-SpecOfShouldExpressionObjectReceiver >> asNegatedFutureStateRecever [
+SpecOfShouldExpressionObjectReceiver >> asFutureStateShouldReceiver [
+	^SpecOfFutureShouldExpressionObjectReceiver from: value
+]
+
+{ #category : #converting }
+SpecOfShouldExpressionObjectReceiver >> asNegatedFutureStateShouldRecever [
 	^self class from: value valueForFutureStateValidation 
 ]
 
@@ -61,9 +66,4 @@ SpecOfShouldExpressionObjectReceiver >> value [
 { #category : #accessing }
 SpecOfShouldExpressionObjectReceiver >> value: anObject [
 	value := anObject
-]
-
-{ #category : #accessing }
-SpecOfShouldExpressionObjectReceiver >> valueForFutureStateValidation [ 
-	^value valueForFutureStateValidation
 ]

@@ -1,30 +1,51 @@
 Class {
 	#name : #SpecOfFutureShouldExpression,
 	#superclass : #SpecOfShouldExpression,
+	#instVars : [
+		'maxWaitingTime'
+	],
 	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
-{ #category : #verification }
-SpecOfFutureShouldExpression >> evaluateWith: aSpecOfObjectState [
-
-	^super evaluateWith: ( SpecOfFutureState requiredState: aSpecOfObjectState) 
+{ #category : #initialization }
+SpecOfFutureShouldExpression >> initialize [
+	super initialize.
+	
+	maxWaitingTime := 200 milliSeconds
 ]
 
 { #category : #accessing }
-SpecOfFutureShouldExpression >> to [ 
-	"Helper message for readability of should expressions:
-		some should takeAWhile to be: 10
-		(some should take: 10 seconds) to be: 10"
-		
-	^self
+SpecOfFutureShouldExpression >> maxWaitingTime [
+	^ maxWaitingTime
+]
+
+{ #category : #accessing }
+SpecOfFutureShouldExpression >> maxWaitingTime: anObject [
+	maxWaitingTime := anObject
 ]
 
 { #category : #execution }
 SpecOfFutureShouldExpression >> validate: aSpecOfObjectState [
-	"The spec of future state validates any kind of object using its value
-	Spec evaluates the value periodically to detect when it will finaly satisfy condition.
-	Using receiver here allows to use object instead of block in takeAWhile expressions.
-	Receiver will return updated state every time the spec will ask it for new value"
-
-	^aSpecOfObjectState validate: receiver
+	"Idea is to periodicaly validate the receiver for given spec.
+	As soon as spec will be satisfied the method will return the successfull validation result.
+	Otherwise the method will wait for a while (maxWaitingTime) to allow it happens.
+	At the end it will validate the receiver the last time and return the result whatever it will be.
+	
+	There is extra optimization for fast completion of method: to reduce waiting pauses.
+	At the beginning the method simply checks that the spec already matches receiver.
+	Then it will wait couple of small pauses to allow fast completion.
+	And only then it will enter the loop with long pauses (100 milliseconds)"
+	| startTime result |
+	(result := super validate: aSpecOfObjectState) isSuccess ifTrue: [ ^result ].
+	10 milliSeconds wait.
+	(result := super validate: aSpecOfObjectState) isSuccess ifTrue: [ ^result ].
+	20 milliSeconds wait.
+	(result := super validate: aSpecOfObjectState) isSuccess ifTrue: [ ^result ].
+	
+	startTime := DateAndTime now - 30 milliSeconds. "which we already waited".
+	[DateAndTime now < (startTime + maxWaitingTime)] whileTrue: [ 
+		100 milliSeconds wait.
+		(result := super validate: aSpecOfObjectState) isSuccess ifTrue: [ ^result ]].
+	
+	^super validate: aSpecOfObjectState
 ]

@@ -21,7 +21,12 @@ SpecOfShouldExpressionReceiver class >> isAbstract [
 ]
 
 { #category : #converting }
-SpecOfShouldExpressionReceiver >> asNegatedFutureStateRecever [
+SpecOfShouldExpressionReceiver >> asFutureStateShouldReceiver [
+	^self
+]
+
+{ #category : #converting }
+SpecOfShouldExpressionReceiver >> asNegatedFutureStateShouldRecever [
 	^self
 ]
 
@@ -51,14 +56,15 @@ SpecOfShouldExpressionReceiver >> subPropertyAt: aMessage [
 	self subclassResponsibility 
 ]
 
-{ #category : #accessing }
-SpecOfShouldExpressionReceiver >> validationSubject [
-	self subclassResponsibility 
+{ #category : #validation }
+SpecOfShouldExpressionReceiver >> validate: aSpecOfObjectState [
+
+	^aSpecOfObjectState validate: self validationSubject
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiver >> valueForFutureStateValidation [ 
-	^self subclassResponsibility 
+SpecOfShouldExpressionReceiver >> validationSubject [
+	self subclassResponsibility 
 ]
 
 { #category : #asserting }
