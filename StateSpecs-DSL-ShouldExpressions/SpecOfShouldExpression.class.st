@@ -165,7 +165,6 @@ SpecOfShouldExpression >> evaluateWith: aSpecOfObjectState [
 	| result |
 	aSpecOfObjectState denial: withNegation.
 	result := self validate: aSpecOfObjectState.
-	result isFailure ifTrue: [ result subjectOwner: receiver ].
 	^ result raise 
 ]
 

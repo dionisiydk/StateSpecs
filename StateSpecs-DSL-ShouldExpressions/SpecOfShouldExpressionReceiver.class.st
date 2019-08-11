@@ -59,7 +59,10 @@ SpecOfShouldExpressionReceiver >> subPropertyAt: aMessage [
 { #category : #validation }
 SpecOfShouldExpressionReceiver >> validate: aSpecOfObjectState [
 
-	^aSpecOfObjectState validate: self validationSubject
+	| result |
+	result := aSpecOfObjectState validate: self validationSubject.
+	result subjectOwner: self.
+	^result
 ]
 
 { #category : #accessing }
