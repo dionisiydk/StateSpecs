@@ -1,11 +1,11 @@
 Class {
-	#name : #SpecOfShouldExpressionPropertyReceiverTests,
+	#name : #SpecOfShouldReceiverPropertyTests,
 	#superclass : #TestCase,
 	#category : #'StateSpecs-DSL-ShouldExpressions-Tests'
 }
 
 { #category : #tests }
-SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubject [ 
+SpecOfShouldReceiverPropertyTests >> testGettingValidationSubject [ 
 
 	| property |
 	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).
@@ -14,7 +14,7 @@ SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubject [
 ]
 
 { #category : #tests }
-SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubjectFromDeepProperty [ 
+SpecOfShouldReceiverPropertyTests >> testGettingValidationSubjectFromDeepProperty [ 
 
 	| property subProperty |
 	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).
@@ -24,7 +24,7 @@ SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubjectFromD
 ]
 
 { #category : #tests }
-SpecOfShouldExpressionPropertyReceiverTests >> testPrinting [ 
+SpecOfShouldReceiverPropertyTests >> testPrinting [ 
 
 	| property |
 	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).
@@ -33,7 +33,7 @@ SpecOfShouldExpressionPropertyReceiverTests >> testPrinting [
 ]
 
 { #category : #tests }
-SpecOfShouldExpressionPropertyReceiverTests >> testPrintingDeepProperty [
+SpecOfShouldReceiverPropertyTests >> testPrintingDeepProperty [
 
 	| property subProperty |
 	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).

@@ -67,7 +67,7 @@ SpecOfShouldReceiver >> validate [
 ]
 
 { #category : #validation }
-SpecOfShouldReceiver >> validate: aSpecOfObjectState [
+SpecOfShouldReceiver >> validateWith: aSpecOfObjectState [
 
 	| result |
 	result := self validate.

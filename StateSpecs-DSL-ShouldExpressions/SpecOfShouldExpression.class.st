@@ -294,7 +294,7 @@ SpecOfShouldExpression >> to [
 { #category : #execution }
 SpecOfShouldExpression >> validate: aSpecOfObjectState [
 
-	^receiver validate: aSpecOfObjectState
+	^receiver validateWith: aSpecOfObjectState
 ]
 
 { #category : #accessing }
