@@ -89,7 +89,7 @@ SpecOfShouldExpressionTests >> testCreationFromObject [
 	subject := Object new.
 	result := subject should.
 	self assert: (result isKindOf: SpecOfShouldExpression).
-	self assert: result receiver class == SpecOfShouldExpressionObjectReceiver.
+	self assert: result receiver class == SpecOfShouldReceiverRoot.
 	self assert: result receiver value == subject
 ]
 

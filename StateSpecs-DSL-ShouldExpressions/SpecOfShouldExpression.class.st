@@ -46,7 +46,7 @@ SpecOfShouldExpression class >> currentExpressionsClass [
 
 { #category : #'instance creation' }
 SpecOfShouldExpression class >> for: anObject [
-	^self withReceiver: (SpecOfShouldExpressionObjectReceiver from: anObject)
+	^self withReceiver: (SpecOfShouldReceiverRoot from: anObject)
 ]
 
 { #category : #'instance creation' }

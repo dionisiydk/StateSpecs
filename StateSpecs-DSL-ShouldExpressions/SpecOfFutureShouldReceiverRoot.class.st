@@ -8,13 +8,13 @@ I modify the #validationSubject of superclass to allow using blocks and object i
 	#() should takeAWhile to be isEmpty
 "
 Class {
-	#name : #SpecOfFutureShouldExpressionObjectReceiver,
-	#superclass : #SpecOfShouldExpressionObjectReceiver,
+	#name : #SpecOfFutureShouldReceiverRoot,
+	#superclass : #SpecOfShouldReceiverRoot,
 	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #validation }
-SpecOfFutureShouldExpressionObjectReceiver >> validationSubject [
+SpecOfFutureShouldReceiverRoot >> validationSubject [
 
 	^value valueForFutureStateValidation 
 ]

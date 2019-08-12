@@ -35,7 +35,7 @@ SpecOfShouldExpressionReceiverBuilder >> asShouldExpressionReceiver [
 { #category : #dispatching }
 SpecOfShouldExpressionReceiverBuilder >> doesNotUnderstand: aMessage [
 
-	receiver := receiver subPropertyAt: aMessage
+	receiver := receiver propertyFrom: aMessage
 ]
 
 { #category : #printing }

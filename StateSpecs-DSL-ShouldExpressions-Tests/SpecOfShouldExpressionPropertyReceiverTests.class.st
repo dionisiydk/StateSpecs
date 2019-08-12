@@ -8,7 +8,7 @@ Class {
 SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubject [ 
 
 	| property |
-	property := (SpecOfShouldExpressionObjectReceiver from: #object) subPropertyAt: (Message selector: #size).
+	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).
 
 	self assert: property validationSubject equals: 6
 ]
@@ -17,8 +17,8 @@ SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubject [
 SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubjectFromDeepProperty [ 
 
 	| property subProperty |
-	property := (SpecOfShouldExpressionObjectReceiver from: #object) subPropertyAt: (Message selector: #size).
-	subProperty := property subPropertyAt: (Message selector: #negated).
+	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).
+	subProperty := property propertyFrom: (Message selector: #negated).
 	
 	self assert: subProperty validationSubject equals: -6
 ]
@@ -27,7 +27,7 @@ SpecOfShouldExpressionPropertyReceiverTests >> testGettingValidationSubjectFromD
 SpecOfShouldExpressionPropertyReceiverTests >> testPrinting [ 
 
 	| property |
-	property := (SpecOfShouldExpressionObjectReceiver from: #object) subPropertyAt: (Message selector: #size).
+	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).
 
 	self assert: property printString equals: '6 from #object size'
 ]
@@ -36,8 +36,8 @@ SpecOfShouldExpressionPropertyReceiverTests >> testPrinting [
 SpecOfShouldExpressionPropertyReceiverTests >> testPrintingDeepProperty [
 
 	| property subProperty |
-	property := (SpecOfShouldExpressionObjectReceiver from: #object) subPropertyAt: (Message selector: #size).
-	subProperty := property subPropertyAt: (Message selector: #negated).
+	property := (SpecOfShouldReceiverRoot from: #object) propertyFrom: (Message selector: #size).
+	subProperty := property propertyFrom: (Message selector: #negated).
 	
 	self assert: subProperty printString equals: '-6 from #object size negated'
 ]

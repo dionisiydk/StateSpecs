@@ -10,9 +10,9 @@ in case of property ""x"" of point (10@20).
 
 My instances can be created by 
 	
-	SpecOfShouldExpressionPropertyReceiver of: 	parentProperty message: aMessage 
+	SpecOfShouldExpressionReceiverProperty of: 	aShouldExpressionReceiver message: aMessage 
 
-But in practice SpecOfObjectPropertyBuilder is used to create properties by normal message sends.
+But in practice SpecOfShouldExpressionReceiverBuilder is used to create properties by normal message sends.
 	(10@20) where x 
 
 Public API and Key Messages
@@ -24,13 +24,13 @@ Public API and Key Messages
 Internal Representation and Key Implementation Points.
 
     Instance Variables
-	parent:		<SpecOfObjectProperty>
+	parent:		<SpecOfShouldExpressionReceiver>
 	parentMessage:		<Message>
 	value:		<Object>
 "
 Class {
-	#name : #SpecOfShouldExpressionReceiverProperty,
-	#superclass : #SpecOfShouldExpressionReceiver,
+	#name : #SpecOfShouldReceiverProperty,
+	#superclass : #SpecOfShouldReceiver,
 	#instVars : [
 		'parent',
 		'parentMessage',
@@ -40,7 +40,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-SpecOfShouldExpressionReceiverProperty class >> of: anObjectProperty message: aMessage [
+SpecOfShouldReceiverProperty class >> of: anObjectProperty message: aMessage [
 
 	^self new 
 		parent: anObjectProperty;
@@ -48,82 +48,76 @@ SpecOfShouldExpressionReceiverProperty class >> of: anObjectProperty message: aM
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> parent [
+SpecOfShouldReceiverProperty >> parent [
 	^ parent
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> parent: anObject [
+SpecOfShouldReceiverProperty >> parent: anObject [
 	parent := anObject
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> parentMessage [
+SpecOfShouldReceiverProperty >> parentMessage [
 	^ parentMessage
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> parentMessage: anObject [
+SpecOfShouldReceiverProperty >> parentMessage: anObject [
 	parentMessage := anObject
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiverProperty >> printOn: aStream [
+SpecOfShouldReceiverProperty >> printOn: aStream [
 
 	aStream nextPutAll: (self printSubject: self validationSubject)
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiverProperty >> printPath [
+SpecOfShouldReceiverProperty >> printPath [
 	^parent printPath
 		ifEmpty: [parentMessage printString]
 		ifNotEmpty: [ :path | path , ' ' , parentMessage printString ]
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiverProperty >> printProperty: aShouldExpressionReceiverProperty [
+SpecOfShouldReceiverProperty >> printProperty: aShouldExpressionReceiverProperty [
 	^parent printProperty: aShouldExpressionReceiverProperty
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiverProperty >> printSubject: anObject [
+SpecOfShouldReceiverProperty >> printSubject: anObject [
 
 	^(super printSubject: anObject) , ' from ', self stringForSpecTitle
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiverProperty >> stringForSpecTitle [ 
+SpecOfShouldReceiverProperty >> stringForSpecTitle [ 
 	^parent printProperty: self
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> subPropertyAt: aMessage [
-
-	^SpecOfShouldExpressionReceiverProperty of: self message: aMessage
-]
-
-{ #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> updateValue [
+SpecOfShouldReceiverProperty >> updateValue [
 	value := parentMessage sendTo: parent validationSubject
 ]
 
 { #category : #validation }
-SpecOfShouldExpressionReceiverProperty >> validate [
+SpecOfShouldReceiverProperty >> validate [
 	^parent validate
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> validationSubject [
+SpecOfShouldReceiverProperty >> validationSubject [
 	self updateValue.
 	^ value
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> value [
+SpecOfShouldReceiverProperty >> value [
 	value
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiverProperty >> value: anObject [
+SpecOfShouldReceiverProperty >> value: anObject [
 	value := anObject
 ]

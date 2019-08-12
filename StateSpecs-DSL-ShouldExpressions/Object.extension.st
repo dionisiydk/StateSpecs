@@ -3,7 +3,7 @@ Extension { #name : #Object }
 { #category : #'*StateSpecs-DSL-ShouldExpressions' }
 Object >> asShouldExpressionReceiver [
 
-	^SpecOfShouldExpressionObjectReceiver from: self
+	^SpecOfShouldReceiverRoot from: self
 ]
 
 { #category : #'*StateSpecs-DSL-ShouldExpressions' }

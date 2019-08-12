@@ -10,54 +10,55 @@ The main subclass is sSpecOfObjectProperty while others are kind of helpers to r
 - object computed from the given block
 "
 Class {
-	#name : #SpecOfShouldExpressionReceiver,
+	#name : #SpecOfShouldReceiver,
 	#superclass : #Object,
 	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
 
 { #category : #testing }
-SpecOfShouldExpressionReceiver class >> isAbstract [ 
-	^self = SpecOfShouldExpressionReceiver
+SpecOfShouldReceiver class >> isAbstract [ 
+	^self = SpecOfShouldReceiver
 ]
 
 { #category : #converting }
-SpecOfShouldExpressionReceiver >> asFutureStateShouldReceiver [
+SpecOfShouldReceiver >> asFutureStateShouldReceiver [
 	^self
 ]
 
 { #category : #converting }
-SpecOfShouldExpressionReceiver >> asNegatedFutureStateShouldRecever [
+SpecOfShouldReceiver >> asNegatedFutureStateShouldRecever [
 	^self
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiver >> printPath [
+SpecOfShouldReceiver >> printPath [
 	^''
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiver >> printProperty: aShouldExpressionReceiverProperty [
+SpecOfShouldReceiver >> printProperty: aShouldExpressionReceiverProperty [
 	^self stringForSpecTitle, ' ', aShouldExpressionReceiverProperty printPath.
 ]
 
 { #category : #printing }
-SpecOfShouldExpressionReceiver >> printSubject: anObject [
+SpecOfShouldReceiver >> printSubject: anObject [
 
 	^anObject stringForSpecTitle
 ]
 
+{ #category : #accessing }
+SpecOfShouldReceiver >> propertyFrom: aMessage [
+
+	^SpecOfShouldReceiverProperty of: self message: aMessage
+]
+
 { #category : #asserting }
-SpecOfShouldExpressionReceiver >> should [
+SpecOfShouldReceiver >> should [
 	^SpecOfShouldExpression currentExpressionsClass withReceiver: self
 ]
 
-{ #category : #accessing }
-SpecOfShouldExpressionReceiver >> subPropertyAt: aMessage [
-	self subclassResponsibility 
-]
-
 { #category : #validation }
-SpecOfShouldExpressionReceiver >> validate [
+SpecOfShouldReceiver >> validate [
 	"Subclasses can define some logical conditions on where
 	they can be really used before actual validation of subject.
 	For example argument capture in Mocketry verifies that expected message was actually sent"
@@ -66,7 +67,7 @@ SpecOfShouldExpressionReceiver >> validate [
 ]
 
 { #category : #validation }
-SpecOfShouldExpressionReceiver >> validate: aSpecOfObjectState [
+SpecOfShouldReceiver >> validate: aSpecOfObjectState [
 
 	| result |
 	result := self validate.
@@ -78,11 +79,11 @@ SpecOfShouldExpressionReceiver >> validate: aSpecOfObjectState [
 ]
 
 { #category : #accessing }
-SpecOfShouldExpressionReceiver >> validationSubject [
+SpecOfShouldReceiver >> validationSubject [
 	self subclassResponsibility 
 ]
 
 { #category : #asserting }
-SpecOfShouldExpressionReceiver >> where [
+SpecOfShouldReceiver >> where [
 	^SpecOfShouldExpressionReceiverBuilder startingWith: self
 ]
