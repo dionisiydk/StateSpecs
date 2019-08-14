@@ -125,6 +125,11 @@ SpecOfShouldExpression >> beginWith: aString caseSensitive: aBool [
 	^ self evaluateWith: (SpecOfStringBeginning requiredValue: aString caseSensitive: aBool)
 ]
 
+{ #category : #execution }
+SpecOfShouldExpression >> createSpecOfValidationSubject [
+	^receiver createSpecOfValidationSubject
+]
+
 { #category : #expressions }
 SpecOfShouldExpression >> endWith: aString [
 	^ self evaluateWith: (SpecOfStringEnding requiredValue: aString)

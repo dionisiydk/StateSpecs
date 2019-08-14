@@ -30,6 +30,11 @@ SpecOfShouldReceiver >> asNegatedFutureStateShouldRecever [
 	^self
 ]
 
+{ #category : #validation }
+SpecOfShouldReceiver >> createSpecOfValidationSubject [
+	^SpecOfIdentity to: self validationSubject
+]
+
 { #category : #printing }
 SpecOfShouldReceiver >> printPath [
 	^''
