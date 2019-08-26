@@ -35,6 +35,11 @@ SpecOfShouldReceiver >> createSpecOfValidationSubject [
 	^SpecOfIdentity to: self validationSubject
 ]
 
+{ #category : #testing }
+SpecOfShouldReceiver >> includes: anObject [
+	^self validationSubject = anObject
+]
+
 { #category : #printing }
 SpecOfShouldReceiver >> printPath [
 	^''
