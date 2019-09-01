@@ -47,6 +47,11 @@ SpecOfShouldReceiverProperty class >> of: anObjectProperty message: aMessage [
 		parentMessage: aMessage
 ]
 
+{ #category : #validation }
+SpecOfShouldReceiverProperty >> createSpecOfValidationSubject [
+	^SpecOfObjectHolder requiredHolder: self
+]
+
 { #category : #accessing }
 SpecOfShouldReceiverProperty >> parent [
 	^ parent

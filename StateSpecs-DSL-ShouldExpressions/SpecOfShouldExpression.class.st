@@ -303,11 +303,6 @@ SpecOfShouldExpression >> validate: aSpecOfObjectState [
 ]
 
 { #category : #accessing }
-SpecOfShouldExpression >> validationSubject [
-	^receiver validationSubject
-]
-
-{ #category : #accessing }
 SpecOfShouldExpression >> withNegation [
 	^ withNegation
 ]
