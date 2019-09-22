@@ -10,3 +10,8 @@ BlockClosure >> asStateSpec [
 BlockClosure >> stringForSpecTitle [
 	^self sourceNode formattedCode
 ]
+
+{ #category : #'*StateSpecs-Specs' }
+BlockClosure >> valueForFutureStateValidation [
+	^self value
+]

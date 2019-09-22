@@ -28,7 +28,7 @@ SpecOfObjectValue >> clauseKeyword [
 
 { #category : #displaying }
 SpecOfObjectValue >> defaultTitle [
-	^self clauseKeyword , ' "' , requiredValue stringForSpecTitle , '"'
+	^self clauseKeyword , ' ' , requiredValue stringForSpecTitle
 ]
 
 { #category : #accessing }

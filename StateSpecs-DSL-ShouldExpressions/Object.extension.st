@@ -1,11 +1,17 @@
 Extension { #name : #Object }
 
 { #category : #'*StateSpecs-DSL-ShouldExpressions' }
+Object >> asShouldExpressionReceiver [
+
+	^SpecOfShouldReceiverRoot from: self
+]
+
+{ #category : #'*StateSpecs-DSL-ShouldExpressions' }
 Object >> should [
-	^SpecOfShouldExpression startingAt: self
+	^self asShouldExpressionReceiver should
 ]
 
 { #category : #'*StateSpecs-DSL-ShouldExpressions' }
 Object >> where [
-	^SpecOfObjectPropertyBuilder for: self
+	^self asShouldExpressionReceiver where
 ]

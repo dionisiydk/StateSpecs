@@ -25,7 +25,7 @@ SpecOfBlockFailureTests >> testFailedValidationWithExplicitExpectedErrorInstance
 	result := spec validate: [ anotherError signal].
 	
 	self assert: result isFailure.
-	self assert: result description equals: 'Got "', anotherError stringForSpecValidation , '" but it should equal "', expectedError stringForSpecTitle, '"'
+	self assert: result description equals: 'Got ', anotherError stringForSpecValidation , ' but it should equal ', expectedError stringForSpecTitle
 ]
 
 { #category : #tests }
@@ -40,7 +40,7 @@ SpecOfBlockFailureTests >> testFailedValidationWithExplicitFailureSpec [
 	result := spec validate: [ anotherError signal].
 	
 	self assert: result isFailure.
-	self assert: result description equals: 'Got "', anotherError stringForSpecValidation , '" but it should be "', expectedError stringForSpecTitle, '"'
+	self assert: result description equals: 'Got ', anotherError stringForSpecValidation , ' but it should be ', expectedError stringForSpecTitle
 ]
 
 { #category : #tests }
@@ -164,7 +164,7 @@ SpecOfBlockFailureTests >> testValidationOfBlockFailedByAnotherError [
 	result := spec validate: [ error signal].
 	
 	self assert: result isFailure.
-	self assert: result description equals: 'Got "', error stringForSpecValidation ,'" but it should be a kind of ZeroDivide'
+	self assert: result description equals: 'Got ', error stringForSpecValidation ,' but it should be a kind of ZeroDivide'
 ]
 
 { #category : #tests }

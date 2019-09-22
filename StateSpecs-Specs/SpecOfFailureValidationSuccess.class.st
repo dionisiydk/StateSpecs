@@ -32,8 +32,8 @@ SpecOfFailureValidationSuccess class >> with: anException [
 ]
 
 { #category : #asserting }
-SpecOfFailureValidationSuccess >> should [
-	^signaledFailure should
+SpecOfFailureValidationSuccess >> asShouldExpressionReceiver [
+	^signaledFailure asShouldExpressionReceiver
 ]
 
 { #category : #accessing }
@@ -44,9 +44,4 @@ SpecOfFailureValidationSuccess >> signaledFailure [
 { #category : #accessing }
 SpecOfFailureValidationSuccess >> signaledFailure: anObject [
 	signaledFailure := anObject
-]
-
-{ #category : #asserting }
-SpecOfFailureValidationSuccess >> where [
-	^signaledFailure where
 ]
