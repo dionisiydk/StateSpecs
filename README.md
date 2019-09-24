@@ -28,7 +28,7 @@ To add dependency in your project baseline:
 ```Smalltalk
 spec
     baseline: 'StateSpecs'
-    with: [ spec repository: 'github://dionisiydk/StateSpecs:v2.4.x' ]
+    with: [ spec repository: 'github://dionisiydk/StateSpecs:versionTagOrBranch' ]
 ```
 For old Pharo versions project should be loaded from smalltalkhub:
 ```Smalltalk
