@@ -202,13 +202,13 @@ It fails with message: Got '123' but it should equal '132'.
 Floats are another example where specification behaves differently then standart language comparison:
 
 ```Smalltalk
-0.1 + 0.2 = 0.3 "*> false"
+0.1 + 0.2 = 0.3 "==> false"
 ```
 
 It is correct result because of rounding errors in float arithmetics. But it is completelly not suitable to be part of specification. So in StateSpecs following expression will succeed:
 
 ```Smalltalk
-(0.1 + 0.2) should equal: 0.3  "*> will not fail"
+(0.1 + 0.2) should equal: 0.3  "==> will not fail"
 ```
 
 Float implements *#checkStateSpecsEqualityTo:* by comparing numbers with default accuracy.
