@@ -45,3 +45,8 @@ SpecOfValidationResult >> isSuccess [
 SpecOfValidationResult >> raise [
 	self subclassResponsibility
 ]
+
+{ #category : #accessing }
+SpecOfValidationResult >> subjectOwner: anObject [
+	self subclassResponsibility 
+]

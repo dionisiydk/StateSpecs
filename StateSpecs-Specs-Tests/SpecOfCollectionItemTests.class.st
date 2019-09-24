@@ -28,7 +28,7 @@ SpecOfCollectionItemTests >> testFailedValidationWhenContainingKeyAbsent [
 	
 	result := spec validate: #(1 2).
 	self assert: result isFailure.
-	self assert: result description equals: '#(1 2) not includes key 3 which item should equal "10"'
+	self assert: result description equals: '#(1 2) not includes key 3 which item should equal 10'
 ]
 
 { #category : #tests }
@@ -39,7 +39,7 @@ SpecOfCollectionItemTests >> testFailedValidationWhenRequiredItemIsWrong [
 	
 	result := spec validate: #(1 2 4).
 	self assert: result isFailure.
-	self assert: result description equals: 'Got "4" at key 3 of #(1 2 4) but should equal "3"'
+	self assert: result description equals: 'Got 4 at key 3 of #(1 2 4) but should equal 3'
 ]
 
 { #category : #tests }
@@ -50,7 +50,7 @@ SpecOfCollectionItemTests >> testFailedValidationWhenSpecWithDenialAndContaining
 	
 	result := spec validate: #(1 2).
 	self assert: result isFailure.
-	self assert: result description equals: '#(1 2) not includes key 3 which item should not equal "10"'
+	self assert: result description equals: '#(1 2) not includes key 3 which item should not equal 10'
 ]
 
 { #category : #tests }
@@ -61,7 +61,7 @@ SpecOfCollectionItemTests >> testFailedValidationWhenSpecWithDenialAndRequiredIt
 	
 	result := spec validate: #(1 2 10).
 	self assert: result isFailure.
-	self assert: result description equals: 'Got "10" at key 3 of #(1 2 10) but should not equal "10"'
+	self assert: result description equals: 'Got 10 at key 3 of #(1 2 10) but should not equal 10'
 ]
 
 { #category : #tests }

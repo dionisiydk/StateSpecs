@@ -19,3 +19,9 @@ SpecOfValidationSuccess >> isFailure [
 { #category : #accessing }
 SpecOfValidationSuccess >> raise [
 ]
+
+{ #category : #accessing }
+SpecOfValidationSuccess >> subjectOwner: anObject [
+	"Sucess result does not care about subject which was successfully validated 
+	and therefore it does not care where this subject was retrieved"
+]

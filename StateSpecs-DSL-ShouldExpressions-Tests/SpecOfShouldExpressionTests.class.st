@@ -89,7 +89,8 @@ SpecOfShouldExpressionTests >> testCreationFromObject [
 	subject := Object new.
 	result := subject should.
 	self assert: (result isKindOf: SpecOfShouldExpression).
-	self assert: result receiver == subject
+	self assert: result receiver class == SpecOfShouldReceiverRoot.
+	self assert: result receiver value == subject
 ]
 
 { #category : #tests }
@@ -240,18 +241,17 @@ SpecOfShouldExpressionTests >> testPropertyBuilderPrinting [
 	
 	actual := propertyBuilder printString.
 	
-	self assert: actual equals: 'Got "10" from (10@20) x'
+	self assert: actual equals: 'Got 10 from (10@20) x'
 ]
 
 { #category : #tests }
 SpecOfShouldExpressionTests >> testPropertyValidation [
-	self shouldnt: [(10@20) where x] raise: SpecOfFailed.
-	self should: [10 where x] raise: MessageNotUnderstood.
 	
 	self shouldnt: [(10@20) where x should equal: 10] raise: SpecOfFailed.
 	self shouldnt: [(10@(20@40)) where y x should equal: 20] raise: SpecOfFailed.
 	
 	self should: [(10@20) where x should equal: 50] raise: SpecOfFailed.
+	self should: [10 where x should be: 10] raise: MessageNotUnderstood.
 ]
 
 { #category : #tests }
@@ -261,7 +261,7 @@ SpecOfShouldExpressionTests >> testPropertyValidationFailureDescription [
 	[(10 @ 20) where x should equal: 30] on: SpecOfFailed do: [:err | 
 		errorMessage := err messageText].
 	
-	self assert: errorMessage equals: 'Got "10" from (10@20) x but it should equal "30"'
+	self assert: errorMessage equals: 'Got 10 from (10@20) x but it should equal 30'
 ]
 
 { #category : #tests }
@@ -278,7 +278,7 @@ SpecOfShouldExpressionTests >> testPropertyWithArgsValidationFailureDescription 
 	[((0 @ 1) where distanceTo: (0@2)) should equal: 30] on: SpecOfFailed do: [:err | 
 		errorMessage := err messageText].
 	
-	self assert: errorMessage equals: 'Got "1" from (0@1) distanceTo: (0@2) but it should equal "30"'
+	self assert: errorMessage equals: 'Got 1 from (0@1) distanceTo: (0@2) but it should equal 30'
 ]
 
 { #category : #tests }
@@ -288,7 +288,7 @@ SpecOfShouldExpressionTests >> testPropertyWithBooleanSubPropertyValidation [
 	self should: [#(first #(1 2)) where second should be isEmpty] raise: SpecOfFailed.
 	
 	[#(first #(1 2)) where second should be isEmpty] on: SpecOfFailed do: [:err | 
-		self assert: err messageText equals: 'Got "#(1 2)" from #(#first #(1 2)) second but it should be isEmpty'	
+		self assert: err messageText equals: '#(1 2) from #(#first #(1 2)) second should be isEmpty'	
 	].
 ]
 
@@ -298,7 +298,7 @@ SpecOfShouldExpressionTests >> testPropertyWithBooleanSubPropertyValidationWhenS
 	self should: [#(first #()) where second should not be isEmpty] raise: SpecOfFailed.
 	
 	[#(first #()) where second should not be isEmpty] on: SpecOfFailed do: [:err | 
-		self assert: err messageText equals: 'Got "#()" from #(#first #()) second but it should not be isEmpty'	
+		self assert: err messageText equals: '#() from #(#first #()) second should not be isEmpty'	
 	].
 ]
 
@@ -419,4 +419,62 @@ SpecOfShouldExpressionTests >> testStringMatchesWithRegexCaseSensitive [
 	self shouldnt: ['test string' should matchRegex: '^test' caseSensitive: true] raise: SpecOfFailed.
 	self should: ['test string' should matchRegex: '^Test' caseSensitive: true] raise: SpecOfFailed.
 	self should: ['some test string' should matchRegex: '^test' caseSensitive: true] raise: SpecOfFailed
+]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhile [
+	| value |
+	[ value := #expectedValue ] fork.	
+	self shouldnt: [[value] should takeAWhile to be: #expectedValue] raise: SpecOfFailed.
+	self should: [[value] should takeAWhile to be: #newValue] raise: SpecOfFailed.
+	
+	self should: [[value] should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
+	[ value := #newValue ] fork.
+	self shouldnt: [[value] should takeAWhile to not be: #expectedValue] raise: SpecOfFailed.
+]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithBeBooleanProperty [
+	| value |
+	value := #() asOrderedCollection.
+	self shouldnt: [[value] should takeAWhile to be isEmpty] raise: SpecOfFailed.
+	self should: [[value] should takeAWhile to not be isEmpty] raise: SpecOfFailed.
+	
+	[ value add: #someItem ] fork.
+	self shouldnt: [[value] should takeAWhile to not be isEmpty] raise: SpecOfFailed.
+]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithGivenTimeout [
+	| value |
+	[ value := #expectedValue ] fork.	
+	self shouldnt: [([value] should take: 1 second) to be: #expectedValue] raise: SpecOfFailed.
+	self should: [([value] should take: 10 milliSeconds) to be: #newValue] raise: SpecOfFailed
+]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithPriorNegation [
+	"The expression 'should not takeAWhile' logically means 
+	that following condition should be already true without any waiting. 
+	And it makes it equivalent to simple should expression"
+	| value |
+	value := #expectedValue.
+	self shouldnt: [[value] should not takeAWhile to be: #expectedValue] raise: SpecOfFailed.
+	self should: [[value] should not takeAWhile to be: #anotherValue] raise: SpecOfFailed.
+	
+	[value := #anotherValue] fork.
+	self should: [[value] should not takeAWhile to be: #anotherValue] raise: SpecOfFailed.
+	
+	
+]
+
+{ #category : #tests }
+SpecOfShouldExpressionTests >> testTakeAWhileWithPropertyValidation [
+	| object |
+	object := {#item}.
+	self shouldnt: [object where first should takeAWhile to be: #item] raise: SpecOfFailed.
+	self should: [object where first should takeAWhile to be: #anotherItem] raise: SpecOfFailed.
+	
+	[ object at: 1 put: #anotherItem ] fork.
+	self shouldnt: [object where first should takeAWhile to be: #anotherItem] raise: SpecOfFailed
 ]

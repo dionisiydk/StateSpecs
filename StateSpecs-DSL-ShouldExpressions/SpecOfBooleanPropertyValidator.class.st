@@ -16,11 +16,16 @@ Class {
 	#name : #SpecOfBooleanPropertyValidator,
 	#superclass : #Object,
 	#instVars : [
-		'subject',
-		'withNegation'
+		'shouldExpression'
 	],
-	#category : 'StateSpecs-DSL-ShouldExpressions'
+	#category : #'StateSpecs-DSL-ShouldExpressions'
 }
+
+{ #category : #'instance creation' }
+SpecOfBooleanPropertyValidator class >> for: aShouldExpression [
+	^self new 
+		shouldExpression: aShouldExpression
+]
 
 { #category : #'instance creation' }
 SpecOfBooleanPropertyValidator class >> for: anObject withNegation: aBoolean [
@@ -34,40 +39,15 @@ SpecOfBooleanPropertyValidator >> doesNotUnderstand: aMessage [
 
 	| spec |
 	spec := SpecOfBooleanProperty fromMessage: aMessage.
-	spec denial: withNegation.
-
-	^ self validatePropertyBy: spec
-]
-
-{ #category : #initialization }
-SpecOfBooleanPropertyValidator >> initialize [
-	super initialize.
-	
-	withNegation := false
+	^ shouldExpression evaluateWith: spec
 ]
 
 { #category : #accessing }
-SpecOfBooleanPropertyValidator >> subject [
-	^ subject
+SpecOfBooleanPropertyValidator >> shouldExpression [
+	^ shouldExpression
 ]
 
 { #category : #accessing }
-SpecOfBooleanPropertyValidator >> subject: anObject [
-	subject := anObject
-]
-
-{ #category : #validation }
-SpecOfBooleanPropertyValidator >> validatePropertyBy: aSpecOfBooleanProperty [
-
-	^ (aSpecOfBooleanProperty validate: subject) raise
-]
-
-{ #category : #accessing }
-SpecOfBooleanPropertyValidator >> withNegation [
-	^ withNegation
-]
-
-{ #category : #accessing }
-SpecOfBooleanPropertyValidator >> withNegation: anObject [
-	withNegation := anObject
+SpecOfBooleanPropertyValidator >> shouldExpression: anObject [
+	shouldExpression := anObject
 ]

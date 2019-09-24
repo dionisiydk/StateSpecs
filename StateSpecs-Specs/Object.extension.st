@@ -31,3 +31,8 @@ Object >> stringForSpecTitle [
 Object >> stringForSpecValidation [
 	^self stringForSpecTitle
 ]
+
+{ #category : #'*StateSpecs-Specs' }
+Object >> valueForFutureStateValidation [
+	^self
+]

@@ -32,6 +32,6 @@ SpecOfApproxEqualityTests >> testValidationFailure [
 	result := spec validate: 12.
 	
 	self assert: result isFailure.
-	self assert: result description equals: 'Got "12" but it should be within 2 of 10'
+	self assert: result description equals: 'Got 12 but it should be within 2 of 10'
 
 ]
