@@ -1,21 +1,10 @@
 # StateSpecs
 [![Build Status](https://travis-ci.org/dionisiydk/StateSpecs.svg?branch=master)](https://travis-ci.org/dionisiydk/StateSpecs)
 
-StateSpecs is object state specification framework. It describes particular object states by first class specifications. For example there are SpecOfCollectionItem, SpecOfObjectClass and SpecOfObjectSuperclass. 
+StateSpecs is object state specification framework. It describes particular object states by first class specifications.
+For example there are SpecOfCollectionItem, SpecOfObjectClass and SpecOfObjectSuperclass.
+StateSpecs provides fluent DSL to validate objects over these specification.
 
-To easily create specifications and validate objects by them StateSpecs provides two kind DSL: should expressions and "word" classes.
-
-First allows you to write "assertions":
-```Smalltalk
-1 should be: 2
-1 should equal: 10
-```
-And second allows you to instantiate specs by natural readable words:
-```Smalltalk
-Kind of: Number
-Instance of: String
-Equal to: 'test'
-```
 ## Installation
 Use following script for Pharo version >= 6:
 ```Smalltalk
