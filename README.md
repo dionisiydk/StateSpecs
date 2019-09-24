@@ -45,14 +45,14 @@ spec matches: 10. "==> true"
 spec matches: "string". "==> false"
 ```
 
-Specifications can be inverted by ===#not=== message:
+Specifications can be inverted by *#not* message:
 
 ```Smalltalk
 spec not validate: 10.  "==> a SpecOfValidationFailure(Got 10 but it should not be an instance of SmallInteger)"
 spec not validate: 'some string'. "==> a SpecOfValidationSuccess"
 ```
 
-===#not=== creates new spec instance. You can also invert current one with message ===#invert===.
+*#not* creates new spec instance. You can also invert current one with message *#invert*.
 
 
 To easily create specifications and validate objects by them StateSpecs provides two kind DSL: should expressions and "word" classes.
@@ -90,7 +90,7 @@ Underhood should expression creates particular kind of specification and verify 
 
 When object is not valid should expression signals SpecOfFailed error. Then in debugger you can inspect validation result to deeply analyze the reason.
 
-Sending extra ===#not=== message after ===should=== inverts logic of following expression:
+Sending extra *#not* message after *should* inverts logic of following expression:
 
 ```Smalltalk
 3 should not equal: 3. "fail with message: Got '3' but it should not equal '3'"
@@ -106,7 +106,7 @@ To explore complete set of expressions look at SpecOfShouldExpression. It is als
 
 ### Specification of object identity
 
-===#be:=== message is used to verify that receiver is identical to given argument:
+*#be:* message is used to verify that receiver is identical to given argument:
 
 ```Smalltalk
 1 should be: 2.
@@ -122,7 +122,7 @@ It fails with message: Got "1" but it should not be "1".
 
 ### Specification of object equality
 
-===#equal:=== message is used to verify that receiver is equivalent to given argument:
+*#equal:* message is used to verify that receiver is equivalent to given argument:
 
 ```Smalltalk
 3 should equal: 2.
@@ -154,7 +154,7 @@ It would be not suitable to fail because it will force us to always think about 
 In fact we are supposed to assert collection items with this expression and not instances of collections.
 
 
-So this expression will not fail in StateSpecs. And to achieve it equality specification uses specific message ===#checkStateSpecsEqualityTo:=== instead of standart #=.
+So this expression will not fail in StateSpecs. And to achieve it equality specification uses specific message *#checkStateSpecsEqualityTo:* instead of standart #=.
 Default Object implementation calls #=. But some classes redefine it with appropriate logic to provide as less restrictive behaviour as possible.
 
 Idea is that general equality specification should be as much simple equality as possible with enough restrictions. And if you want some extra details you should use different explicit specification which describes them.
@@ -175,7 +175,7 @@ Following this logic StateSpecs do not check order when compare basic collection
 #(1 2 3) asSet should equal: #(2 1 3). "will not fail"
 ```
 
-When order is important use different message ===#equalInOrder:===:
+When order is important use different message *#equalInOrder:*:
 
 ```Smalltalk
 #(1 2 3) asOrderedCollection should equalInOrder: #(2 1 3).
@@ -202,16 +202,16 @@ It fails with message: Got '123' but it should equal '132'.
 Floats are another example where specification behaves differently then standart language comparison:
 
 ```Smalltalk
-0.1 + 0.2 = 0.3 "===> false"
+0.1 + 0.2 = 0.3 "*> false"
 ```
 
 It is correct result because of rounding errors in float arithmetics. But it is completelly not suitable to be part of specification. So in StateSpecs following expression will succeed:
 
 ```Smalltalk
-(0.1 + 0.2) should equal: 0.3  "===> will not fail"
+(0.1 + 0.2) should equal: 0.3  "*> will not fail"
 ```
 
-Float implements ===#checkStateSpecsEqualityTo:=== by comparing numbers with default accuracy.
+Float implements *#checkStateSpecsEqualityTo:* by comparing numbers with default accuracy.
 
 
 And there is special specification for floats when concrete accuracy is important:
@@ -242,7 +242,7 @@ It will fail with message: Got 3 but it should be an instance of String.
 
 ### Specifications of collection
 
-To specify size of expected collection use ===#haveSize:=== message:
+To specify size of expected collection use *#haveSize:* message:
 
 ```Smalltalk
 #(1 2) should haveSize: 10.
@@ -260,7 +260,7 @@ There is simple expression for empty collections:
 It fails with message: #(1 2) should be isEmpty. It uses predicate syntax explained below at *@predicate*.
 
 
-To require concrete item in collection use one of ===#include:=== messages:
+To require concrete item in collection use one of *#include:* messages:
 
 ```Smalltalk
 #(1 2) should include: 10.
@@ -296,7 +296,7 @@ It fails with message: Got #(1 2) but should include (be an instance of String).
 It is succeed without error.
 
 
-To specify expected key in dictionary use ===#includeKey:=== message:
+To specify expected key in dictionary use *#includeKey:* message:
 
 ```Smalltalk
 { #key1 -> #value1 } asDictionary should includeKey: #key2
@@ -354,7 +354,7 @@ If you want case sensitive specs just add ==caseSensitive: true== keyword to all
 
 ### Raising exception
 
-===#raise:=== message allows specify expected failure of given block:
+*#raise:* message allows specify expected failure of given block:
 
 ```Smalltalk
 [1 + 2] should raise: ZeroDivide.
@@ -396,7 +396,7 @@ It not fails.
 It fails with message: Got "Error: another error" but it should equal "Error: test error".
 
 
-Also there is simple message ===#fail=== to expect general failure:
+Also there is simple message *#fail* to expect general failure:
 
 ```Smalltalk
 [1/0] should fail.
@@ -434,7 +434,7 @@ spec := SpecOfBooleanProperty fromMessage: (Message selector: #between:and: argu
 spec validate: 5
 ```
 
-To use this spec from should expression special ===#be=== message is introduced. Any following expression after #be will create message for boolean spec as in example above. And then it will validate #should receiver:
+To use this spec from should expression special *#be* message is introduced. Any following expression after #be will create message for boolean spec as in example above. And then it will validate #should receiver:
 
 ```Smalltalk
 3 should be even.
@@ -464,7 +464,7 @@ Imaging that we want to validate x coordinate of rectangle origin. It could be d
 
 It fails with message: Got 1 but it should equal 100. But it has no information about what exact property of rectangle is wrong. Users would like to see it in failure message.
 
-To achieve this goal StateSpecs introduced ===#where=== message which should be sent to receiver and all following messages up to ===#should=== will be recorded as object propety. At the end #should expression will validate retrieved property instead of receiver:
+To achieve this goal StateSpecs introduced *#where* message which should be sent to receiver and all following messages up to *#should* will be recorded as object propety. At the end #should expression will validate retrieved property instead of receiver:
 
 ```Smalltalk
 (1@3 corner: 20@30) where origin x should equal: 100.
