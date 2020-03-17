@@ -43,3 +43,10 @@ BaselineOfStateSpecs >> baseline: spec [
 			group: 'GhostSupportTests' with: #('GhostSupport' 'StateSpecs-GhostSupport-Tests')
 	]
 ]
+
+{ #category : #accessing }
+BaselineOfStateSpecs >> projectClass [
+	^ [ self class environment at: #MetacelloCypressBaselineProject ]
+		on: NotFound
+		do: [ super projectClass ]
+]
