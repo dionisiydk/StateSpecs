@@ -5,6 +5,14 @@ Class {
 }
 
 { #category : #tests }
+SpecOfEqualityTests >> testC_backgroundError [
+	
+	[self error: 'test background error'] fork.
+	
+]
+
+
+{ #category : #tests }
 SpecOfEqualityTests >> testCreationFromObject [
 	| subject result |
 	subject := Object new.
