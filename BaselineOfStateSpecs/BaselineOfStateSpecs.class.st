@@ -25,7 +25,7 @@ BaselineOfStateSpecs >> baseline: spec [
 			
 		spec 
 			baseline: 'Ghost' with: [
-		 	    spec repository: 'github://pharo-ide/Ghost:v6.0.1'];
+		 	    spec repository: 'github://pharo-ide/Ghost:v6.0.2'];
 			project: 'GhostCore' copyFrom: 'Ghost' with: [
 		 	    spec	loads: #('ObjectGhost')];
 			project: 'GhostTests' copyFrom: 'Ghost' with: [
