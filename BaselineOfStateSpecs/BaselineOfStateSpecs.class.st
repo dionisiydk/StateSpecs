@@ -38,7 +38,7 @@ BaselineOfStateSpecs >> baseline: spec [
 		spec
 			group: 'default' with: #('Core' 'Tests');
 			group: 'Core' with: #('StateSpecs-Specs' 'StateSpecs-DSL-ShouldExpressions' 'StateSpecs-DSL-ClassWords');
-			group: 'Tests' with: #('StateSpecs-Specs-Tests' 'StateSpecs-DSL-ShouldExpressions-Tests' 'StateSpecs-DSL-ClassWords-Tests' 'StateSpecs-Help' 'StateSpecs-GTTools');
+			group: 'Tests' with: #('StateSpecs-Specs-Tests' 'StateSpecs-DSL-ShouldExpressions-Tests' 'StateSpecs-DSL-ClassWords-Tests' 'StateSpecs-GTTools');
 			group: 'GhostSupport' with: #('StateSpecs-GhostSupport');
 			group: 'GhostSupportTests' with: #('GhostSupport' 'StateSpecs-GhostSupport-Tests')
 	]

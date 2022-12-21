@@ -9,5 +9,5 @@ Point >> checkStateSpecsEqualityTo: aPoint [
 
 { #category : #'*StateSpecs-Specs' }
 Point >> isEqual: aPoint within: accuracy [ 
-	^(self dist: aPoint) < accuracy
+	^(self distanceTo: aPoint) < accuracy
 ]
